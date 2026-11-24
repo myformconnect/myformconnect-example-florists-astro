@@ -47,7 +47,7 @@ export function resolveFormUuid(urlOrUuid: string): string {
 export const SITE = {
   name: 'Bloom & Beyond Studio',
   tagline: 'Flowers that make every moment unforgettable.',
-  url: 'https://bloomandbeyond.example',
+  url: 'https://bloomandbeyond.vercel.app',
   email: 'hello@bloomandbeyond.example',
   phone: '+1 (555) 010-2020',
   hours: 'Monday–Saturday, 9 AM – 6 PM',

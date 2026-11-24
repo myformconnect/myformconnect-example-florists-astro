@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://bloomandbeyond.example/sitemap.xml
+Sitemap: https://bloomandbeyond.vercel.app/sitemap.xml
