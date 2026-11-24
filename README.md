@@ -4,7 +4,7 @@ A premium florist studio website built with **Astro (SSG)**, **TypeScript**, and
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ```bash
 # 1. Install dependencies
@@ -19,7 +19,7 @@ npm run build
 
 ---
 
-## 📝 Form Action Configuration
+## Form Action Configuration
 
 You can update form endpoints easily by pasting either your **full action URL** or just the **form UUID**.
 
@@ -52,7 +52,7 @@ Override endpoints directly where the component is rendered:
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```text
 ├── public/
