@@ -1,0 +1,537 @@
+/* =============================================================
+   Bloom & Beyond Studio – Global Stylesheet
+   Premium Florist Website
+   ============================================================= */
+
+/* ── 1. CSS Custom Properties ─────────────────────────────── */
+:root {
+  /* Brand Colors */
+  --color-bg:          #FAF8F3;
+  --color-bg-alt:      #F1EEE7;
+  --color-dark:        #252923;
+  --color-secondary:   #74766E;
+  --color-green:       #68765A;
+  --color-green-dark:  #4f5a44;
+  --color-pink:        #E9C8C5;
+  --color-pink-light:  #f5e5e3;
+  --color-white:       #FFFFFF;
+  --color-mfc-blue:    #2563EB;
+  --color-mfc-blue-bg: #EFF6FF;
+  --color-border:      #E2DDD5;
+
+  /* Typography */
+  --font-serif:  'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --font-sans:   'DM Sans', system-ui, -apple-system, sans-serif;
+
+  /* Spacing Scale */
+  --space-1:   0.25rem;
+  --space-2:   0.5rem;
+  --space-3:   0.75rem;
+  --space-4:   1rem;
+  --space-5:   1.25rem;
+  --space-6:   1.5rem;
+  --space-8:   2rem;
+  --space-10:  2.5rem;
+  --space-12:  3rem;
+  --space-16:  4rem;
+  --space-20:  5rem;
+  --space-24:  6rem;
+  --space-32:  8rem;
+
+  /* Layout */
+  --max-width:       1280px;
+  --max-width-text:  720px;
+  --header-height:   72px;
+
+  /* Radius */
+  --radius-sm:  4px;
+  --radius-md:  8px;
+  --radius-lg:  16px;
+  --radius-xl:  24px;
+
+  /* Transitions */
+  --transition-fast:   150ms ease;
+  --transition-base:   250ms ease;
+  --transition-slow:   400ms ease;
+
+  /* Shadows */
+  --shadow-sm:  0 1px 3px rgba(37,41,35,0.06), 0 1px 2px rgba(37,41,35,0.04);
+  --shadow-md:  0 4px 12px rgba(37,41,35,0.08), 0 2px 6px rgba(37,41,35,0.04);
+  --shadow-lg:  0 10px 30px rgba(37,41,35,0.10), 0 4px 12px rgba(37,41,35,0.06);
+}
+
+/* ── 2. Reset & Base ──────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--color-dark);
+  background-color: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+img, video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+button, input, select, textarea {
+  font: inherit;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--color-dark);
+}
+
+/* ── 3. Typography Scale ──────────────────────────────────── */
+.text-display {
+  font-family: var(--font-serif);
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+
+.text-h1 {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 500;
+  line-height: 1.15;
+}
+
+.text-h2 {
+  font-family: var(--font-serif);
+  font-size: clamp(1.6rem, 3vw, 2.75rem);
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.text-h3 {
+  font-family: var(--font-serif);
+  font-size: clamp(1.3rem, 2vw, 2rem);
+  font-weight: 500;
+}
+
+.text-h4 {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+.text-lead {
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  line-height: 1.7;
+  color: var(--color-secondary);
+}
+
+.text-body {
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+.text-small {
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.text-xs {
+  font-size: 0.75rem;
+  line-height: 1.4;
+}
+
+/* ── 4. Layout Utilities ──────────────────────────────────── */
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--space-6);
+  padding-right: var(--space-6);
+}
+
+.section {
+  padding-top: var(--space-20);
+  padding-bottom: var(--space-20);
+}
+
+.section-sm {
+  padding-top: var(--space-12);
+  padding-bottom: var(--space-12);
+}
+
+.section-lg {
+  padding-top: var(--space-32);
+  padding-bottom: var(--space-32);
+}
+
+/* ── 5. Colors & Text Utilities ───────────────────────────── */
+.text-green    { color: var(--color-green); }
+.text-secondary { color: var(--color-secondary); }
+.text-white    { color: var(--color-white); }
+.text-dark     { color: var(--color-dark); }
+
+.bg-alt        { background-color: var(--color-bg-alt); }
+.bg-dark       { background-color: var(--color-dark); }
+.bg-green      { background-color: var(--color-green); }
+.bg-pink       { background-color: var(--color-pink-light); }
+.bg-white      { background-color: var(--color-white); }
+
+/* ── 6. Buttons ───────────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 0.75rem 1.75rem;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  border: 1.5px solid transparent;
+  transition: all var(--transition-base);
+  text-decoration: none;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.btn-primary {
+  background-color: var(--color-green);
+  color: var(--color-white);
+  border-color: var(--color-green);
+}
+.btn-primary:hover {
+  background-color: var(--color-green-dark);
+  border-color: var(--color-green-dark);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: var(--color-dark);
+  border-color: var(--color-dark);
+}
+.btn-outline:hover {
+  background-color: var(--color-dark);
+  color: var(--color-white);
+  transform: translateY(-1px);
+}
+
+.btn-outline-white {
+  background-color: transparent;
+  color: var(--color-white);
+  border-color: rgba(255,255,255,0.6);
+}
+.btn-outline-white:hover {
+  background-color: var(--color-white);
+  color: var(--color-dark);
+}
+
+.btn-ghost {
+  background: none;
+  border-color: transparent;
+  color: var(--color-green);
+  padding-left: 0;
+  padding-right: 0;
+}
+.btn-ghost:hover {
+  color: var(--color-green-dark);
+  gap: var(--space-3);
+}
+
+.btn-booking {
+  background-color: var(--color-mfc-blue);
+  color: var(--color-white);
+  border-color: var(--color-mfc-blue);
+}
+.btn-booking:hover {
+  background-color: #1d4ed8;
+  border-color: #1d4ed8;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(37,99,235,0.3);
+}
+
+/* ── 7. Form Styles ───────────────────────────────────────── */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.form-label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-dark);
+  letter-spacing: 0.01em;
+}
+
+.form-label .required {
+  color: var(--color-green);
+  margin-left: 2px;
+}
+
+.form-input,
+.form-select,
+.form-textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background-color: var(--color-white);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  color: var(--color-dark);
+  font-size: 0.9375rem;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: var(--color-mfc-blue);
+  box-shadow: 0 0 0 3px rgba(37,99,235,0.12);
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder {
+  color: #A8A9A3;
+}
+
+.form-select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2374766E' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 16px;
+  padding-right: 2.5rem;
+  cursor: pointer;
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.form-grid {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.form-grid-2 {
+  grid-template-columns: 1fr 1fr;
+}
+
+.form-submit {
+  margin-top: var(--space-4);
+}
+
+/* ── 8. Form Attribution ──────────────────────────────────── */
+.form-attribution {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--color-border);
+}
+
+.form-attribution p {
+  font-size: 0.75rem;
+  color: var(--color-secondary);
+  letter-spacing: 0.01em;
+}
+
+.form-attribution a {
+  color: var(--color-mfc-blue);
+  font-weight: 500;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.form-attribution a:hover {
+  color: #1d4ed8;
+  text-decoration: underline;
+}
+
+/* ── 9. Cards ─────────────────────────────────────────────── */
+.card {
+  background-color: var(--color-white);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow var(--transition-base), transform var(--transition-base);
+}
+
+.card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+/* ── 10. Section Headings ─────────────────────────────────── */
+.section-label {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-green);
+  margin-bottom: var(--space-4);
+}
+
+.section-title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.6rem, 3vw, 2.75rem);
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--color-dark);
+  margin-bottom: var(--space-5);
+}
+
+.section-desc {
+  font-size: clamp(1rem, 1.5vw, 1.1rem);
+  line-height: 1.7;
+  color: var(--color-secondary);
+  max-width: 600px;
+}
+
+.section-header {
+  margin-bottom: var(--space-12);
+}
+
+.section-header--center {
+  text-align: center;
+}
+.section-header--center .section-desc {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ── 11. Divider ──────────────────────────────────────────── */
+.divider {
+  width: 48px;
+  height: 2px;
+  background-color: var(--color-green);
+  margin-bottom: var(--space-6);
+}
+.divider--center { margin-left: auto; margin-right: auto; }
+
+/* ── 12. Badge / Tag ──────────────────────────────────────── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  border-radius: 100px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+
+.badge-green {
+  background-color: rgba(104,118,90,0.12);
+  color: var(--color-green);
+}
+
+.badge-pink {
+  background-color: var(--color-pink-light);
+  color: #9e5a54;
+}
+
+/* ── 13. Hero Images ──────────────────────────────────────── */
+.hero-image {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+}
+
+.hero-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ── 14. Responsive Grid ──────────────────────────────────── */
+.grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-8); }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-8); }
+.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-6); }
+
+/* ── 15. Focus Styles ─────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--color-mfc-blue);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+/* ── 16. Skip Link ────────────────────────────────────────── */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: var(--space-4);
+  background: var(--color-dark);
+  color: var(--color-white);
+  padding: var(--space-3) var(--space-6);
+  border-radius: var(--radius-sm);
+  font-size: 0.875rem;
+  font-weight: 500;
+  z-index: 9999;
+  text-decoration: none;
+}
+.skip-link:focus {
+  top: var(--space-4);
+}
+
+/* ── 17. Responsive ───────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .grid-4 { grid-template-columns: repeat(2, 1fr); }
+  .grid-3 { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+  .container { padding-left: var(--space-5); padding-right: var(--space-5); }
+  .section  { padding-top: var(--space-12); padding-bottom: var(--space-12); }
+  .section-lg { padding-top: var(--space-20); padding-bottom: var(--space-20); }
+  .grid-2  { grid-template-columns: 1fr; }
+  .grid-3  { grid-template-columns: 1fr; }
+  .grid-4  { grid-template-columns: repeat(2, 1fr); }
+  .form-grid-2 { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 480px) {
+  .grid-4  { grid-template-columns: 1fr; }
+  .btn { padding: 0.7rem 1.4rem; font-size: 0.875rem; }
+}
+
+/* ── 18. Print ────────────────────────────────────────────── */
+@media print {
+  .site-header, .site-footer, .btn { display: none; }
+  body { background: white; color: black; }
+}

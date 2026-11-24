@@ -1,0 +1,529 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import EnquiryForm from '../components/EnquiryForm.astro';
+import BookingWidget from '../components/BookingWidget.astro';
+import { SITE } from '../config/forms';
+
+const pageTitle = 'Contact & Book a Consultation';
+const description = 'Get in touch with Bloom & Beyond Studio — send us your floral enquiry or book a wedding or event consultation. We\'d love to help create something beautiful for you.';
+---
+
+<MainLayout title={pageTitle} description={description}>
+  <Header />
+
+  <main id="main-content">
+
+    <!-- ── CONTACT HERO ──────────────────────────────── -->
+    <section class="contact-hero">
+      <div class="container">
+        <div class="contact-hero-inner">
+          <div class="contact-hero-text">
+            <span class="section-label">Get In Touch</span>
+            <h1 class="contact-hero-title">
+              We'd love to hear<br/>
+              <em>what's blooming.</em>
+            </h1>
+            <p class="contact-hero-desc">
+              Tell us about your occasion, your ideas, or the flowers you're looking for. We'll help bring your vision to life — beautifully.
+            </p>
+          </div>
+          <div class="contact-hero-info">
+            <div class="contact-info-card">
+              <h2 class="contact-info-title">Studio Information</h2>
+              <div class="contact-info-items">
+                <div class="contact-info-item">
+                  <div class="contact-info-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--color-green)" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                  </div>
+                  <div>
+                    <span class="contact-info-label">Email</span>
+                    <a href={`mailto:${SITE.email}`} class="contact-info-value">{SITE.email}</a>
+                  </div>
+                </div>
+                <div class="contact-info-item">
+                  <div class="contact-info-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--color-green)" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.42 2 2 0 0 1 3.6 1.21h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.78a16 16 0 0 0 7.31 7.31l.98-.98a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                  </div>
+                  <div>
+                    <span class="contact-info-label">Phone</span>
+                    <a href="tel:+15550102020" class="contact-info-value">{SITE.phone}</a>
+                  </div>
+                </div>
+                <div class="contact-info-item">
+                  <div class="contact-info-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--color-green)" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                  </div>
+                  <div>
+                    <span class="contact-info-label">Studio Hours</span>
+                    <span class="contact-info-value">{SITE.hours}</span>
+                  </div>
+                </div>
+                <div class="contact-info-item">
+                  <div class="contact-info-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--color-green)" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                  </div>
+                  <div>
+                    <span class="contact-info-label">Address</span>
+                    <span class="contact-info-value">{SITE.address}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── GENERAL ENQUIRY FORM ───────────────────────── -->
+    <section class="section contact-enquiry-section" id="enquiry">
+      <div class="container">
+        <div class="contact-section-grid">
+          <div class="contact-section-text">
+            <SectionHeading
+              label="General Enquiry"
+              title="Tell us about your occasion."
+              description="Whether you're planning a wedding, ordering a custom bouquet, or organizing a special event — we'd love to hear from you. Fill out the form and we'll get back to you within one business day."
+            />
+
+            <div class="enquiry-highlights">
+              {[
+                { label: 'Wedding Flowers', icon: '💍' },
+                { label: 'Birthday & Anniversary', icon: '🌸' },
+                { label: 'Corporate Flowers', icon: '🏢' },
+                { label: 'Events & Parties', icon: '🎉' },
+                { label: 'Sympathy Flowers', icon: '🕊️' },
+                { label: 'Custom Bouquets', icon: '✨' },
+              ].map(h => (
+                <div class="enquiry-highlight-tag">
+                  <span class="enquiry-highlight-label text-xs">{h.label}</span>
+                </div>
+              ))}
+            </div>
+
+            <div class="enquiry-mfc-badge">
+              <div class="mfc-badge-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-mfc-blue)" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </div>
+              <div>
+                <span class="text-small" style="font-weight: 500; color: var(--color-dark);">Secure form powered by MyFormConnect</span>
+                <span class="text-xs" style="display: block; color: var(--color-secondary); margin-top: 2px;">Your enquiry is captured instantly — we never miss a message.</span>
+              </div>
+            </div>
+          </div>
+          <div class="contact-section-form">
+            <!-- Direct form action URL (or UUID) for General Enquiry: -->
+            <EnquiryForm
+              formId="contact-enquiry-form"
+              actionUrl="https://myformcapture.com/f/5ddb4177-17cc-4600-9af9-39be97a71ee5"
+            />
+            <!-- Alternative with bare UUID: -->
+            <!-- <EnquiryForm formId="contact-enquiry-form" actionUrl="5ddb4177-17cc-4600-9af9-39be97a71ee5" /> -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── BOOKING SECTION ────────────────────────────── -->
+    <section class="section booking-section bg-alt" id="booking">
+      <div class="container">
+        <div class="booking-section-header">
+          <div class="booking-section-label">
+            <span class="booking-badge">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--color-mfc-blue)" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              Consultation Booking
+            </span>
+          </div>
+          <h2 class="booking-section-title">Let's plan something beautiful.</h2>
+          <p class="booking-section-desc">
+            Have a wedding or event coming up? Schedule a consultation with our floral design team to discuss your ideas, preferences, and requirements. This is a dedicated booking form — separate from our general enquiry form — to help us prioritise your consultation request.
+          </p>
+        </div>
+
+        <div class="booking-section-grid">
+          <div class="booking-section-text">
+            <div class="booking-info-cards">
+              <div class="booking-info-card">
+                <div class="booking-info-icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-mfc-blue)" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                </div>
+                <div>
+                  <h3 class="booking-info-title">Personal Consultation</h3>
+                  <p class="text-small" style="color: var(--color-secondary);">One-to-one with our creative design team, focused entirely on your vision.</p>
+                </div>
+              </div>
+              <div class="booking-info-card">
+                <div class="booking-info-icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-mfc-blue)" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                </div>
+                <div>
+                  <h3 class="booking-info-title">Flexible Scheduling</h3>
+                  <p class="text-small" style="color: var(--color-secondary);">Choose a date and time that works for you. We accommodate in-studio and remote consultations.</p>
+                </div>
+              </div>
+              <div class="booking-info-card">
+                <div class="booking-info-icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-mfc-blue)" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+                </div>
+                <div>
+                  <h3 class="booking-info-title">Custom Proposal</h3>
+                  <p class="text-small" style="color: var(--color-secondary);">Following your consultation, we'll create a bespoke floral proposal tailored to your event.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="booking-section-widget">
+            <!-- Direct booking widget action URL (or UUID) for Consultation Booking: -->
+            <BookingWidget
+              actionUrl="https://myformcapture.com/f/95cb0e2f-9a02-4b30-ab68-5aeb9e1220a7"
+            />
+            <!-- Alternative with bare UUID: -->
+            <!-- <BookingWidget actionUrl="95cb0e2f-9a02-4b30-ab68-5aeb9e1220a7" /> -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── DIFFERENTIATION INFO ───────────────────────── -->
+    <section class="section diff-section">
+      <div class="container">
+        <div class="diff-grid">
+          <div class="diff-card diff-card--enquiry">
+            <div class="diff-card-header">
+              <div class="diff-icon diff-icon--green">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-green)" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              </div>
+              <h3 class="diff-card-title">General Enquiry</h3>
+            </div>
+            <p class="diff-card-desc text-small">
+              Send us a message about any floral need — from a birthday bouquet to a quick question about our services. We'll respond within one business day with guidance and options.
+            </p>
+            <a href="#enquiry" class="btn btn-outline diff-card-btn">Go to Enquiry Form</a>
+          </div>
+          <div class="diff-card diff-card--booking">
+            <div class="diff-card-header">
+              <div class="diff-icon diff-icon--blue">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-mfc-blue)" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              </div>
+              <h3 class="diff-card-title">Consultation Booking</h3>
+            </div>
+            <p class="diff-card-desc text-small">
+              For weddings, events, and larger commissions — book a dedicated consultation with our creative team. We'll discuss your vision in detail and create a personalized floral proposal.
+            </p>
+            <a href="#booking" class="btn btn-booking diff-card-btn">Go to Booking Form</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <Footer />
+</MainLayout>
+
+<style>
+/* ── Contact Hero ────────────────────────────── */
+.contact-hero {
+  background-color: var(--color-bg-alt);
+  padding-top: var(--space-16);
+  padding-bottom: var(--space-12);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.contact-hero-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-12);
+  align-items: center;
+}
+
+.contact-hero-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2.2rem, 4vw, 3.5rem);
+  font-weight: 400;
+  line-height: 1.1;
+  color: var(--color-dark);
+  margin-bottom: var(--space-5);
+  margin-top: var(--space-4);
+}
+
+.contact-hero-title em {
+  font-style: italic;
+  color: var(--color-green);
+}
+
+.contact-hero-desc {
+  font-size: 1.05rem;
+  color: var(--color-secondary);
+  line-height: 1.7;
+}
+
+.contact-info-card {
+  background: var(--color-white);
+  border-radius: var(--radius-lg);
+  padding: var(--space-8);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+}
+
+.contact-info-title {
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: var(--color-dark);
+  margin-bottom: var(--space-5);
+}
+
+.contact-info-items {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.contact-info-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-4);
+}
+
+.contact-info-icon {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(104,118,90,0.1);
+  border-radius: var(--radius-sm);
+}
+
+.contact-info-label {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-secondary);
+  margin-bottom: 2px;
+}
+
+.contact-info-value {
+  display: block;
+  font-size: 0.9375rem;
+  color: var(--color-dark);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a.contact-info-value:hover {
+  color: var(--color-green);
+}
+
+/* ── Enquiry Section ─────────────────────────── */
+.contact-section-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: var(--space-12);
+  align-items: start;
+}
+
+.enquiry-highlights {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-bottom: var(--space-6);
+  margin-top: var(--space-4);
+}
+
+.enquiry-highlight-tag {
+  padding: var(--space-2) var(--space-3);
+  background: rgba(104,118,90,0.08);
+  border-radius: 100px;
+  border: 1px solid rgba(104,118,90,0.2);
+}
+
+.enquiry-highlight-label {
+  color: var(--color-green);
+  font-weight: 500;
+}
+
+.enquiry-mfc-badge {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  background: var(--color-mfc-blue-bg);
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(37,99,235,0.15);
+}
+
+.mfc-badge-icon {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(37,99,235,0.1);
+  border-radius: var(--radius-sm);
+}
+
+/* ── Booking Section ─────────────────────────── */
+.booking-section-header {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto var(--space-12);
+}
+
+.booking-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  background: var(--color-mfc-blue-bg);
+  border: 1px solid rgba(37,99,235,0.2);
+  border-radius: 100px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-mfc-blue);
+  letter-spacing: 0.04em;
+  margin-bottom: var(--space-5);
+}
+
+.booking-section-title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.8rem, 3vw, 2.75rem);
+  font-weight: 400;
+  color: var(--color-dark);
+  margin-bottom: var(--space-4);
+}
+
+.booking-section-desc {
+  font-size: 1rem;
+  color: var(--color-secondary);
+  line-height: 1.7;
+}
+
+.booking-section-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-8);
+  align-items: start;
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+.booking-info-cards {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.booking-info-card {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-4);
+  padding: var(--space-5);
+  background: var(--color-white);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+}
+
+.booking-info-icon {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-mfc-blue-bg);
+  border-radius: var(--radius-sm);
+}
+
+.booking-info-title {
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--color-dark);
+  margin-bottom: var(--space-1);
+}
+
+/* ── Differentiation Cards ───────────────────── */
+.diff-section {
+  background: var(--color-bg);
+}
+
+.diff-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-6);
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.diff-card {
+  padding: var(--space-8);
+  border-radius: var(--radius-lg);
+  border: 2px solid transparent;
+}
+
+.diff-card--enquiry {
+  background: rgba(104,118,90,0.05);
+  border-color: rgba(104,118,90,0.2);
+}
+
+.diff-card--booking {
+  background: var(--color-mfc-blue-bg);
+  border-color: rgba(37,99,235,0.2);
+}
+
+.diff-card-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+.diff-icon {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+}
+
+.diff-icon--green { background: rgba(104,118,90,0.12); }
+.diff-icon--blue  { background: rgba(37,99,235,0.1); }
+
+.diff-card-title {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--color-dark);
+}
+
+.diff-card-desc {
+  color: var(--color-secondary);
+  line-height: 1.65;
+  margin-bottom: var(--space-6);
+}
+
+.diff-card-btn {
+  font-size: 0.875rem;
+  padding: 0.65rem 1.25rem;
+}
+
+/* ── Responsive ──────────────────────────────── */
+@media (max-width: 1024px) {
+  .contact-hero-inner { grid-template-columns: 1fr; }
+  .contact-section-grid { grid-template-columns: 1fr; }
+  .booking-section-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 768px) {
+  .diff-grid { grid-template-columns: 1fr; }
+}
+</style>

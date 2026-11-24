@@ -1,0 +1,348 @@
+---
+// Header component with sticky nav and mobile menu
+---
+
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="/" class="header-logo" aria-label="Bloom & Beyond Studio – Home">
+      <span class="logo-mark" aria-hidden="true">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="16" cy="10" r="5" fill="#68765A" opacity="0.9"/>
+          <circle cx="10" cy="20" r="4" fill="#E9C8C5" opacity="0.9"/>
+          <circle cx="22" cy="20" r="4" fill="#E9C8C5" opacity="0.9"/>
+          <circle cx="16" cy="23" r="3.5" fill="#68765A" opacity="0.6"/>
+          <line x1="16" y1="15" x2="16" y2="30" stroke="#68765A" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </span>
+      <span class="logo-text">
+        <span class="logo-name">Bloom <span class="logo-amp">&amp;</span> Beyond</span>
+        <span class="logo-tagline">Floral Studio</span>
+      </span>
+    </a>
+
+    <nav class="header-nav" id="main-nav" aria-label="Main navigation">
+      <ul class="nav-list">
+        <li><a href="/" class="nav-link">Home</a></li>
+        <li><a href="/about" class="nav-link">About</a></li>
+        <li><a href="/services" class="nav-link">Services</a></li>
+        <li><a href="/contact" class="nav-link">Contact</a></li>
+      </ul>
+    </nav>
+
+    <div class="header-cta">
+      <a href="/contact#booking" class="btn btn-booking btn-sm">Book a Consultation</a>
+    </div>
+
+    <button
+      class="mobile-menu-btn"
+      id="mobile-menu-btn"
+      aria-label="Open navigation menu"
+      aria-expanded="false"
+      aria-controls="main-nav"
+    >
+      <span class="menu-icon" aria-hidden="true">
+        <span></span>
+        <span></span>
+        <span></span>
+      </span>
+    </button>
+  </div>
+</header>
+
+<div class="mobile-nav-overlay" id="mobile-nav-overlay" aria-hidden="true">
+  <div class="mobile-nav-panel">
+    <div class="mobile-nav-header">
+      <a href="/" class="logo-name" style="font-family: var(--font-serif); font-size: 1.5rem; color: var(--color-dark);">Bloom &amp; Beyond</a>
+      <button class="mobile-close-btn" id="mobile-close-btn" aria-label="Close navigation menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+    </div>
+    <ul class="mobile-nav-list">
+      <li><a href="/" class="mobile-nav-link">Home</a></li>
+      <li><a href="/about" class="mobile-nav-link">About</a></li>
+      <li><a href="/services" class="mobile-nav-link">Services</a></li>
+      <li><a href="/contact" class="mobile-nav-link">Contact</a></li>
+    </ul>
+    <a href="/contact#booking" class="btn btn-booking" style="margin-top: 2rem; width: 100%; justify-content: center;">Book a Consultation</a>
+  </div>
+</div>
+
+<style>
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: rgba(250, 248, 243, 0.95);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--color-border);
+  height: var(--header-height);
+  display: flex;
+  align-items: center;
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+}
+
+.header-logo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.logo-mark {
+  display: flex;
+  align-items: center;
+}
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.logo-name {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--color-dark);
+  line-height: 1.1;
+}
+
+.logo-amp {
+  color: var(--color-green);
+}
+
+.logo-tagline {
+  font-family: var(--font-sans);
+  font-size: 0.65rem;
+  font-weight: 400;
+  color: var(--color-secondary);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.header-nav {
+  margin-left: auto;
+}
+
+.nav-list {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  list-style: none;
+}
+
+.nav-link {
+  font-size: 0.9375rem;
+  font-weight: 400;
+  color: var(--color-secondary);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+  position: relative;
+  padding-bottom: 2px;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background-color: var(--color-green);
+  transition: width var(--transition-base);
+}
+
+.nav-link:hover {
+  color: var(--color-dark);
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.header-cta {
+  margin-left: var(--space-4);
+  flex-shrink: 0;
+}
+
+.btn-sm {
+  padding: 0.6rem 1.25rem;
+  font-size: 0.875rem;
+}
+
+/* Mobile Menu Button */
+.mobile-menu-btn {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: var(--space-2);
+  margin-left: auto;
+  color: var(--color-dark);
+}
+
+.menu-icon {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 24px;
+}
+
+.menu-icon span {
+  display: block;
+  width: 100%;
+  height: 1.5px;
+  background-color: currentColor;
+  border-radius: 2px;
+  transition: transform var(--transition-base), opacity var(--transition-base);
+}
+
+/* Mobile Nav Overlay */
+.mobile-nav-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.mobile-nav-overlay.open {
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.mobile-nav-overlay::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(37,41,35,0.5);
+  opacity: 0;
+  transition: opacity var(--transition-base);
+}
+
+.mobile-nav-overlay.open::before {
+  opacity: 1;
+}
+
+.mobile-nav-panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: min(320px, 85vw);
+  height: 100%;
+  background-color: var(--color-bg);
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  transform: translateX(100%);
+  transition: transform var(--transition-slow);
+  overflow-y: auto;
+}
+
+.mobile-nav-overlay.open .mobile-nav-panel {
+  transform: translateX(0);
+}
+
+.mobile-nav-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-8);
+}
+
+.mobile-close-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: var(--space-2);
+  color: var(--color-secondary);
+  border-radius: var(--radius-sm);
+}
+
+.mobile-close-btn:hover {
+  color: var(--color-dark);
+  background-color: var(--color-bg-alt);
+}
+
+.mobile-nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  list-style: none;
+}
+
+.mobile-nav-link {
+  display: block;
+  padding: var(--space-3) var(--space-4);
+  font-size: 1.25rem;
+  font-family: var(--font-serif);
+  color: var(--color-dark);
+  text-decoration: none;
+  border-radius: var(--radius-sm);
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+
+.mobile-nav-link:hover {
+  background-color: var(--color-bg-alt);
+  color: var(--color-green);
+}
+
+@media (max-width: 900px) {
+  .header-nav { display: none; }
+  .header-cta { display: none; }
+  .mobile-menu-btn { display: flex; }
+}
+
+@media (max-width: 480px) {
+  .logo-tagline { display: none; }
+}
+</style>
+
+<script>
+  const btn = document.getElementById('mobile-menu-btn');
+  const overlay = document.getElementById('mobile-nav-overlay');
+  const closeBtn = document.getElementById('mobile-close-btn');
+
+  function openMenu() {
+    overlay?.classList.add('open');
+    btn?.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMenu() {
+    overlay?.classList.remove('open');
+    btn?.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
+
+  btn?.addEventListener('click', openMenu);
+  closeBtn?.addEventListener('click', closeMenu);
+
+  overlay?.addEventListener('click', (e) => {
+    if (e.target === overlay || (e.target as Element).classList.contains('mobile-nav-panel') === false) {
+      const panel = overlay.querySelector('.mobile-nav-panel');
+      if (!panel?.contains(e.target as Node)) closeMenu();
+    }
+  });
+
+  // Close on escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeMenu();
+  });
+
+  // Close on nav link click
+  document.querySelectorAll('.mobile-nav-link').forEach(link => {
+    link.addEventListener('click', closeMenu);
+  });
+</script>

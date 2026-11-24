@@ -1,0 +1,127 @@
+---
+export interface Props {
+  images?: Array<{ src: string; alt: string; caption?: string }>;
+}
+
+const defaultImages = [
+  { src: 'https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=800&q=80&auto=format', alt: 'Elegant bridal bouquet with garden roses and eucalyptus foliage', caption: 'Bridal Bouquets' },
+  { src: 'https://images.unsplash.com/photo-1757589227072-0dd17af42433?w=800&q=80&auto=format', alt: 'Ceremony floral archway with lush white and blush installations', caption: 'Ceremony Florals' },
+  { src: '/images/table_centerpieces.jpg', alt: 'Romantic dinner reception tablescape with centerpiece arrangement', caption: 'Table Centrepieces' },
+  { src: '/images/seasonal_bouqets.jpeg', alt: 'Fresh seasonal bouquet of flowers', caption: 'Seasonal Bouquets' },
+  { src: '/images/event_installations.jpeg', alt: 'Luxury floral installation for event venue', caption: 'Event Installations' },
+  { src: '/images/custom_arrangments.webp', alt: 'Artisan hand-tied bespoke flower arrangement', caption: 'Custom Arrangements' },
+];
+
+const { images = defaultImages } = Astro.props;
+---
+
+<div class="floral-gallery" aria-label="Floral design gallery">
+  {images.map((img, i) => (
+    <figure class={`gallery-item gallery-item--${(i % 6) + 1}`}>
+      <div class="gallery-image-wrap">
+        <img
+          src={img.src}
+          alt={img.alt}
+          loading="lazy"
+          decoding="async"
+          width="600"
+          height="450"
+        />
+      </div>
+      {img.caption && (
+        <figcaption class="gallery-caption">{img.caption}</figcaption>
+      )}
+    </figure>
+  ))}
+</div>
+
+<style>
+.floral-gallery {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: auto;
+  gap: var(--space-4);
+}
+
+/* Mosaic layout */
+.gallery-item--1 { grid-column: span 5; grid-row: span 2; }
+.gallery-item--2 { grid-column: span 4; }
+.gallery-item--3 { grid-column: span 3; }
+.gallery-item--4 { grid-column: span 4; }
+.gallery-item--5 { grid-column: span 3; }
+.gallery-item--6 { grid-column: span 5; }
+
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  margin: 0;
+}
+
+.gallery-image-wrap {
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+  min-height: 220px;
+}
+
+.gallery-item--1 .gallery-image-wrap { min-height: 460px; }
+
+.gallery-image-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform var(--transition-slow);
+}
+
+.gallery-item:hover .gallery-image-wrap img {
+  transform: scale(1.04);
+}
+
+.gallery-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: var(--space-5) var(--space-4) var(--space-4);
+  background: linear-gradient(to top, rgba(37,41,35,0.65) 0%, transparent 100%);
+  color: var(--color-white);
+  font-family: var(--font-serif);
+  font-size: 0.95rem;
+  font-style: italic;
+  opacity: 0;
+  transition: opacity var(--transition-base);
+}
+
+.gallery-item:hover .gallery-caption {
+  opacity: 1;
+}
+
+@media (max-width: 900px) {
+  .floral-gallery {
+    grid-template-columns: repeat(6, 1fr);
+    gap: var(--space-3);
+  }
+  .gallery-item--1 { grid-column: span 6; grid-row: span 1; }
+  .gallery-item--2 { grid-column: span 3; }
+  .gallery-item--3 { grid-column: span 3; }
+  .gallery-item--4 { grid-column: span 2; }
+  .gallery-item--5 { grid-column: span 2; }
+  .gallery-item--6 { grid-column: span 2; }
+  .gallery-item--1 .gallery-image-wrap { min-height: 280px; }
+  .gallery-caption { opacity: 1; }
+}
+
+@media (max-width: 600px) {
+  .floral-gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .gallery-item--1 { grid-column: span 2; }
+  .gallery-item--2 { grid-column: span 1; }
+  .gallery-item--3 { grid-column: span 1; }
+  .gallery-item--4 { grid-column: span 1; }
+  .gallery-item--5 { grid-column: span 1; }
+  .gallery-item--6 { grid-column: span 2; }
+}
+</style>

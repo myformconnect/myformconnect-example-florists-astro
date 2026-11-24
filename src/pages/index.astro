@@ -1,0 +1,877 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import FloralGallery from '../components/FloralGallery.astro';
+import EnquiryForm from '../components/EnquiryForm.astro';
+import { SITE } from '../config/forms';
+
+const pageTitle = SITE.name;
+const description = 'Bloom & Beyond Studio – premium floral design for weddings, celebrations, and every moment worth remembering. Bridal bouquets, event florals, and custom arrangements.';
+---
+
+<MainLayout title={pageTitle} description={description}>
+  <Header />
+
+  <main id="main-content">
+
+    <!-- ── HERO ──────────────────────────────────────────── -->
+    <section class="hero" aria-label="Welcome to Bloom & Beyond Studio">
+      <div class="container hero-container">
+        <div class="hero-content">
+          <div class="hero-badge">
+            <span class="badge badge-green">Floral Design Studio</span>
+          </div>
+          <h1 class="hero-title">
+            Flowers for the<br />
+            <em>moments that matter.</em>
+          </h1>
+          <p class="hero-desc">
+            Thoughtfully designed floral arrangements for weddings, celebrations, and everyday moments worth remembering.
+          </p>
+          <div class="hero-actions">
+            <a href="/services" class="btn btn-primary">
+              Explore Our Services
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+            <a href="/contact#booking" class="btn btn-outline">Book a Consultation</a>
+          </div>
+          <p class="hero-trust">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--color-green)" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            Thoughtfully arranged. Personally delivered. Beautifully remembered.
+          </p>
+        </div>
+        <div class="hero-visual">
+          <div class="hero-image-frame">
+            <img
+              src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=900&q=85&auto=format"
+              alt="Editorial bridal portrait with a luxurious textured bouquet of garden roses and eucalyptus foliage"
+              width="720"
+              height="900"
+              loading="eager"
+              fetchpriority="high"
+              class="hero-img"
+            />
+            <div class="hero-float-card">
+              <div class="float-card-inner">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-pink)" stroke-width="1.5" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                <div>
+                  <span class="float-card-title">Weddings &amp; Events</span>
+                  <span class="float-card-sub">Personalized floral design</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="hero-accent-block">
+            <p class="hero-accent-text">Every petal, placed with intention.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── INTRO ─────────────────────────────────────────── -->
+    <section class="section bg-alt intro-section">
+      <div class="container">
+        <div class="intro-grid">
+          <div class="intro-image-wrap">
+            <img
+              src="https://images.unsplash.com/photo-1508610048659-a06b669e3321?w=700&q=80&auto=format"
+              alt="Warm floral design studio with fresh botanical blooms and artisanal arrangements"
+              loading="lazy"
+              decoding="async"
+              width="600"
+              height="720"
+              class="intro-img"
+            />
+            <div class="intro-stat-pill">
+              <span class="stat-num">500+</span>
+              <span class="stat-label">Arrangements designed</span>
+            </div>
+          </div>
+          <div class="intro-text">
+            <SectionHeading
+              label="Our Story"
+              title="More than flowers.<br/><em>Memories in bloom.</em>"
+              description="At Bloom &amp; Beyond Studio, we believe floral design is about more than beautiful flowers — it's about creating experiences that linger long after the petals have faded."
+            />
+            <p class="text-body" style="color: var(--color-secondary); margin-bottom: var(--space-5);">
+              Every arrangement we create is a conversation between nature and emotion. We work closely with each client to understand their vision, their story, and the feeling they want their flowers to evoke — then we bring it to life with seasonal blooms, careful craftsmanship, and genuine creative passion.
+            </p>
+            <p class="text-body" style="color: var(--color-secondary); margin-bottom: var(--space-8);">
+              From intimate birthday bouquets to grand wedding installations, we give every project the same level of care, creativity, and personal attention.
+            </p>
+            <div class="intro-pillars">
+              {[
+                { icon: 'leaf', label: 'Seasonal Flowers' },
+                { icon: 'heart', label: 'Personal Touch' },
+                { icon: 'star', label: 'Expert Design' },
+              ].map(p => (
+                <div class="intro-pillar">
+                  <div class="pillar-icon">
+                    {p.icon === 'leaf' && (
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-green)" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M17 8C8 10 5.9 16.17 3.82 19.96M9.5 2c0 4.42 2.59 8 10.5 8"/></svg>
+                    )}
+                    {p.icon === 'heart' && (
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-green)" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                    )}
+                    {p.icon === 'star' && (
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-green)" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    )}
+                  </div>
+                  <span class="text-small" style="font-weight: 500;">{p.label}</span>
+                </div>
+              ))}
+            </div>
+            <a href="/about" class="btn btn-ghost">
+              Read Our Story
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── SERVICES OVERVIEW ───────────────────────────── -->
+    <section class="section services-overview">
+      <div class="container">
+        <SectionHeading
+          label="What We Do"
+          title="Our Floral Services"
+          description="From intimate bouquets to grand event installations, we offer a full range of floral design services tailored to your occasion."
+          align="center"
+        />
+        <div class="services-grid">
+          {[
+            {
+              icon: '💍',
+              title: 'Weddings & Bridal',
+              desc: 'Complete wedding floral design — from bridal bouquets to ceremony arches and reception centrepieces.',
+              img: 'https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=500&q=75&auto=format',
+              alt: 'Bridal bouquet with white flowers and greenery',
+            },
+            {
+              icon: '🎂',
+              title: 'Birthday & Anniversary',
+              desc: 'Celebrate life\'s milestones with custom bouquets and arrangements designed to delight.',
+              img: '/images/birthday&anniversary_flowers.webp',
+              alt: 'Lush romantic bouquet of fresh garden roses and seasonal blooms',
+            },
+            {
+              icon: '🏢',
+              title: 'Corporate & Office',
+              desc: 'Elevate your workspace with beautiful recurring floral arrangements and event decorations.',
+              img: '/images/corporate_flowers.jpeg',
+              alt: 'Elegant floral arrangement for office reception',
+            },
+            {
+              icon: '🎉',
+              title: 'Events & Celebrations',
+              desc: 'Make every celebration unforgettable with custom event florals for parties, engagements and more.',
+              img: '/images/event_installations.jpeg',
+              alt: 'Floral table decoration for a celebration event',
+            },
+            {
+              icon: '🕊️',
+              title: 'Sympathy & Funeral',
+              desc: 'Compassionate, thoughtful sympathy arrangements to honour and remember loved ones.',
+              img: '/images/funeral_flowers.jpeg',
+              alt: 'Soft white sympathy floral arrangement',
+            },
+            {
+              icon: '✨',
+              title: 'Custom Bouquets',
+              desc: 'Personalized arrangements designed around your favourite flowers, colours, and style.',
+              img: '/images/custom_arrangments.webp',
+              alt: 'Custom hand-tied bouquet with garden flowers',
+            },
+          ].map(s => (
+            <article class="service-mini-card">
+              <div class="service-mini-img">
+                <img src={s.img} alt={s.alt} loading="lazy" decoding="async" width="400" height="300" />
+              </div>
+              <div class="service-mini-body">
+                <h3 class="service-mini-title">{s.title}</h3>
+                <p class="service-mini-desc text-small">{s.desc}</p>
+                <a href="/services" class="service-mini-link">
+                  Explore service
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </a>
+              </div>
+            </article>
+          ))}
+        </div>
+        <div style="text-align: center; margin-top: var(--space-10);">
+          <a href="/services" class="btn btn-primary">View All Services</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── WEDDING SECTION ─────────────────────────────── -->
+    <section class="section bg-alt wedding-section" aria-label="Wedding floral design">
+      <div class="container">
+        <div class="wedding-grid">
+          <div class="wedding-text">
+            <SectionHeading
+              label="Wedding Florals"
+              title="Your wedding deserves flowers as unforgettable as the day."
+              description="We pour our hearts into every wedding we design — working with you from your first inspiration to the final petal placed."
+            />
+            <div class="wedding-features">
+              {[
+                'Bridal &amp; bridesmaids\' bouquets',
+                'Ceremony arches &amp; altar decorations',
+                'Reception centrepieces &amp; table flowers',
+                'Floral installations &amp; backdrops',
+                'Venue styling &amp; floral draping',
+                'Buttonholes &amp; corsages',
+              ].map(f => (
+                <div class="wedding-feature">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-pink)" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                  <span class="text-small" set:html={f} />
+                </div>
+              ))}
+            </div>
+            <a href="/contact#booking" class="btn btn-booking" style="margin-top: var(--space-8);">
+              Plan Your Wedding Flowers
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            </a>
+          </div>
+          <div class="wedding-gallery">
+            <div class="wedding-img-main">
+              <img
+                src="https://images.unsplash.com/photo-1757589227072-0dd17af42433?w=700&q=80&auto=format"
+                alt="Breathtaking wedding ceremony archway lavishly adorned with white and blush floral installations"
+                loading="lazy"
+                decoding="async"
+                width="600"
+                height="750"
+              />
+            </div>
+            <div class="wedding-img-secondary">
+              <img
+                src="/images/table_centerpieces.jpg"
+                alt="Romantic reception tablescape with elegant floral centrepieces"
+                loading="lazy"
+                decoding="async"
+                width="400"
+                height="300"
+              />
+              <img
+                src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?w=400&q=80&auto=format"
+                alt="Bridal bouquet detail with roses and trailing greenery"
+                loading="lazy"
+                decoding="async"
+                width="400"
+                height="300"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── GALLERY ─────────────────────────────────────── -->
+    <section class="section gallery-section">
+      <div class="container">
+        <SectionHeading
+          label="Our Work"
+          title="A glimpse into our floral world"
+          description="Each arrangement is a unique creative expression — designed with intention, crafted with care."
+          align="center"
+        />
+        <FloralGallery />
+      </div>
+    </section>
+
+    <!-- ── HOW IT WORKS ────────────────────────────────── -->
+    <section class="section bg-alt how-section">
+      <div class="container">
+        <SectionHeading
+          label="The Process"
+          title="How it works"
+          description="From your first enquiry to the final arrangement, we make the process simple and personal."
+          align="center"
+        />
+        <div class="steps-grid">
+          {[
+            {
+              num: '01',
+              title: 'Tell Us What You Need',
+              desc: 'Submit an enquiry through our website — tell us about your occasion, your floral ideas, and your vision.',
+            },
+            {
+              num: '02',
+              title: 'Discuss Your Vision',
+              desc: 'Schedule a consultation with our floral design team to explore ideas, colours, and style together.',
+            },
+            {
+              num: '03',
+              title: 'We Design Your Flowers',
+              desc: 'Receive a personalized floral proposal tailored to your event, style preferences, and budget.',
+            },
+            {
+              num: '04',
+              title: 'Make Your Moment Beautiful',
+              desc: 'We prepare and deliver your arrangements — fresh, beautiful, and on time for your special day.',
+            },
+          ].map(step => (
+            <div class="step-card">
+              <span class="step-num">{step.num}</span>
+              <h3 class="step-title">{step.title}</h3>
+              <p class="step-desc text-small">{step.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ── BOOKING CTA ─────────────────────────────────── -->
+    <section class="section booking-cta-section" aria-label="Book a consultation">
+      <div class="container">
+        <div class="booking-cta-inner">
+          <div class="booking-cta-leaves" aria-hidden="true">
+            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M44.3,-76.2C57.1,-70,67.1,-57.5,74.5,-43.5C81.9,-29.4,86.7,-14.7,84.8,-1C82.9,12.7,74.3,25.3,64.8,36.2C55.3,47,44.9,56,33,62.3C21.1,68.6,7.6,72.1,-6.5,71.8C-20.6,71.4,-35.3,67.1,-47.3,59.2C-59.3,51.3,-68.5,39.8,-73.9,26.5C-79.3,13.3,-80.9,-1.7,-78.4,-16.1C-75.9,-30.4,-69.3,-44.2,-58.8,-53.6C-48.3,-63,-33.9,-68,-20,-72.2C-6.1,-76.3,7.3,-79.8,20.5,-78.9C33.7,-78,44.3,-72.7,44.3,-76.2Z" fill="rgba(104,118,90,0.08)" transform="translate(100 100)"/>
+            </svg>
+          </div>
+          <span class="section-label" style="color: var(--color-pink);">Start Your Journey</span>
+          <h2 class="booking-cta-title">Have a celebration coming up?</h2>
+          <p class="booking-cta-desc">
+            Let's create something beautiful together. Schedule a consultation and tell us what you're imagining.
+          </p>
+          <a href="/contact#booking" class="btn btn-booking booking-cta-btn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            Schedule Your Consultation
+          </a>
+          <p class="booking-cta-note text-xs">
+            Powered by
+            <a href="https://myformcapture.com" target="_blank" rel="noopener noreferrer" style="color: var(--color-mfc-blue);">MyFormConnect</a>
+            — enquiries captured instantly, never missed.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── CONTACT FORM ────────────────────────────────── -->
+    <section class="section contact-mini-section bg-alt" id="enquiry">
+      <div class="container">
+        <div class="contact-mini-grid">
+          <div class="contact-mini-text">
+            <SectionHeading
+              label="Say Hello"
+              title="Let's talk flowers."
+              description="Whether you're planning a wedding, ordering a custom bouquet, or organizing a special event, we'd love to hear from you."
+            />
+            <div class="contact-mini-details">
+              <div class="contact-detail">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--color-green)" stroke-width="1.5" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                <div>
+                  <span class="contact-detail-label text-xs" style="text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-secondary);">Email</span>
+                  <a href={`mailto:${SITE.email}`} class="contact-detail-value">{SITE.email}</a>
+                </div>
+              </div>
+              <div class="contact-detail">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--color-green)" stroke-width="1.5" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.42 2 2 0 0 1 3.6 1.21h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.78a16 16 0 0 0 7.31 7.31l.98-.98a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                <div>
+                  <span class="contact-detail-label text-xs" style="text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-secondary);">Phone</span>
+                  <a href={`tel:+15550102020`} class="contact-detail-value">{SITE.phone}</a>
+                </div>
+              </div>
+              <div class="contact-detail">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--color-green)" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                <div>
+                  <span class="contact-detail-label text-xs" style="text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-secondary);">Studio Hours</span>
+                  <span class="contact-detail-value">{SITE.hours}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="contact-mini-form">
+            <!-- Direct form action URL (or UUID) can be set/overridden right here: -->
+            <EnquiryForm
+              formId="home-enquiry-form"
+              actionUrl="https://myformcapture.com/f/5ddb4177-17cc-4600-9af9-39be97a71ee5"
+            />
+            <!-- Alternative with bare UUID: -->
+            <!-- <EnquiryForm formId="home-enquiry-form" actionUrl="5ddb4177-17cc-4600-9af9-39be97a71ee5" /> -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <Footer />
+</MainLayout>
+
+<style>
+/* ── Hero ────────────────────────────────────── */
+.hero {
+  padding-top: var(--space-20);
+  padding-bottom: var(--space-20);
+  overflow: hidden;
+}
+
+.hero-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-16);
+  align-items: center;
+}
+
+.hero-badge { margin-bottom: var(--space-5); }
+
+.hero-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2.8rem, 5vw, 4.5rem);
+  font-weight: 400;
+  line-height: 1.1;
+  color: var(--color-dark);
+  margin-bottom: var(--space-6);
+  letter-spacing: -0.01em;
+}
+
+.hero-title em {
+  font-style: italic;
+  color: var(--color-green);
+}
+
+.hero-desc {
+  font-size: clamp(1rem, 1.5vw, 1.15rem);
+  line-height: 1.7;
+  color: var(--color-secondary);
+  max-width: 480px;
+  margin-bottom: var(--space-8);
+}
+
+.hero-actions {
+  display: flex;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-8);
+}
+
+.hero-trust {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: 0.875rem;
+  color: var(--color-secondary);
+  font-style: italic;
+}
+
+.hero-visual {
+  position: relative;
+}
+
+.hero-image-frame {
+  position: relative;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  aspect-ratio: 4/5;
+}
+
+.hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-float-card {
+  position: absolute;
+  bottom: var(--space-6);
+  left: calc(-1 * var(--space-8));
+  background: var(--color-white);
+  border-radius: var(--radius-md);
+  padding: var(--space-4) var(--space-5);
+  box-shadow: var(--shadow-lg);
+}
+
+.float-card-inner {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.float-card-title {
+  display: block;
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: var(--color-dark);
+}
+
+.float-card-sub {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--color-secondary);
+}
+
+.hero-accent-block {
+  margin-top: var(--space-4);
+  padding: var(--space-4) var(--space-5);
+  background: var(--color-bg-alt);
+  border-radius: var(--radius-md);
+  border-left: 3px solid var(--color-green);
+}
+
+.hero-accent-text {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--color-secondary);
+}
+
+/* ── Intro ───────────────────────────────────── */
+.intro-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-16);
+  align-items: start;
+}
+
+.intro-image-wrap {
+  position: relative;
+}
+
+.intro-img {
+  width: 100%;
+  border-radius: var(--radius-xl);
+  object-fit: cover;
+  aspect-ratio: 4/5;
+}
+
+.intro-stat-pill {
+  position: absolute;
+  bottom: var(--space-6);
+  right: calc(-1 * var(--space-6));
+  background: var(--color-dark);
+  color: var(--color-white);
+  padding: var(--space-4) var(--space-5);
+  border-radius: var(--radius-md);
+  text-align: center;
+}
+
+.stat-num {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  font-weight: 500;
+  line-height: 1;
+}
+
+.stat-label {
+  display: block;
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.65);
+  margin-top: var(--space-1);
+}
+
+.intro-pillars {
+  display: flex;
+  gap: var(--space-5);
+  margin-bottom: var(--space-6);
+  flex-wrap: wrap;
+}
+
+.intro-pillar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  background: rgba(104,118,90,0.08);
+  border-radius: 100px;
+}
+
+.pillar-icon {
+  display: flex;
+  align-items: center;
+}
+
+/* ── Services Mini Grid ───────────────────────── */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-6);
+}
+
+.service-mini-card {
+  background: var(--color-white);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  transition: box-shadow var(--transition-base), transform var(--transition-base);
+}
+
+.service-mini-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.service-mini-img {
+  aspect-ratio: 4/3;
+  overflow: hidden;
+}
+
+.service-mini-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+
+.service-mini-card:hover .service-mini-img img {
+  transform: scale(1.05);
+}
+
+.service-mini-body {
+  padding: var(--space-5);
+}
+
+.service-mini-title {
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-bottom: var(--space-2);
+  color: var(--color-dark);
+}
+
+.service-mini-desc {
+  color: var(--color-secondary);
+  line-height: 1.6;
+  margin-bottom: var(--space-4);
+}
+
+.service-mini-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-green);
+  text-decoration: none;
+  transition: gap var(--transition-fast), color var(--transition-fast);
+}
+
+.service-mini-link:hover {
+  color: var(--color-green-dark);
+  gap: var(--space-3);
+}
+
+/* ── Wedding ─────────────────────────────────── */
+.wedding-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-16);
+  align-items: center;
+}
+
+.wedding-features {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3) var(--space-6);
+  margin-bottom: var(--space-4);
+}
+
+.wedding-feature {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.wedding-gallery {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: var(--space-4);
+}
+
+.wedding-img-main {
+  grid-column: 1;
+  grid-row: 1 / 3;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.wedding-img-main img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  min-height: 400px;
+}
+
+.wedding-img-secondary {
+  grid-column: 2;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.wedding-img-secondary img {
+  width: 100%;
+  border-radius: var(--radius-md);
+  object-fit: cover;
+  aspect-ratio: 4/3;
+}
+
+/* ── Steps ───────────────────────────────────── */
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-8);
+  position: relative;
+}
+
+.steps-grid::before {
+  content: '';
+  position: absolute;
+  top: 2.5rem;
+  left: calc(12.5% + 1.5rem);
+  right: calc(12.5% + 1.5rem);
+  height: 1px;
+  background: var(--color-border);
+  z-index: 0;
+}
+
+.step-card {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: var(--space-4);
+}
+
+.step-num {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--color-green);
+  color: var(--color-white);
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  font-weight: 500;
+  margin: 0 auto var(--space-5);
+}
+
+.step-title {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--color-dark);
+  margin-bottom: var(--space-3);
+}
+
+.step-desc {
+  color: var(--color-secondary);
+  line-height: 1.6;
+}
+
+/* ── Booking CTA ─────────────────────────────── */
+.booking-cta-section {
+  background-color: var(--color-bg-alt);
+}
+
+.booking-cta-inner {
+  position: relative;
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto;
+  padding: var(--space-12) var(--space-6);
+  overflow: hidden;
+}
+
+.booking-cta-leaves {
+  position: absolute;
+  top: -40px;
+  right: -60px;
+  width: 240px;
+  opacity: 0.5;
+  pointer-events: none;
+  user-select: none;
+}
+
+.booking-cta-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 400;
+  color: var(--color-dark);
+  margin-bottom: var(--space-5);
+  margin-top: var(--space-3);
+}
+
+.booking-cta-desc {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--color-secondary);
+  margin-bottom: var(--space-8);
+}
+
+.booking-cta-btn {
+  font-size: 1.0625rem;
+  padding: 0.9rem 2rem;
+  margin-bottom: var(--space-5);
+}
+
+.booking-cta-note {
+  color: var(--color-secondary);
+}
+
+/* ── Contact Mini ────────────────────────────── */
+.contact-mini-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-16);
+  align-items: start;
+}
+
+.contact-mini-details {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  margin-top: var(--space-4);
+}
+
+.contact-detail {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-4);
+}
+
+.contact-detail-value {
+  display: block;
+  font-size: 0.9375rem;
+  color: var(--color-dark);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a.contact-detail-value:hover {
+  color: var(--color-green);
+}
+
+/* ── Responsive ──────────────────────────────── */
+@media (max-width: 1024px) {
+  .hero-container { grid-template-columns: 1fr; gap: var(--space-10); }
+  .hero-float-card { left: var(--space-4); }
+  .intro-grid { grid-template-columns: 1fr; }
+  .intro-stat-pill { right: var(--space-4); }
+  .services-grid { grid-template-columns: repeat(2, 1fr); }
+  .wedding-grid { grid-template-columns: 1fr; }
+  .wedding-gallery { order: -1; }
+  .steps-grid { grid-template-columns: repeat(2, 1fr); }
+  .steps-grid::before { display: none; }
+  .contact-mini-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 768px) {
+  .services-grid { grid-template-columns: 1fr; }
+  .wedding-features { grid-template-columns: 1fr; }
+  .hero-actions { flex-direction: column; align-items: flex-start; }
+}
+
+@media (max-width: 480px) {
+  .steps-grid { grid-template-columns: 1fr; }
+}
+</style>

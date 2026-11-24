@@ -1,0 +1,25 @@
+---
+export interface Props {
+  label?: string;
+  title: string;
+  description?: string;
+  align?: 'left' | 'center';
+  titleClass?: string;
+}
+
+const {
+  label,
+  title,
+  description,
+  align = 'left',
+  titleClass = '',
+} = Astro.props;
+---
+
+<div class={`section-header ${align === 'center' ? 'section-header--center' : ''}`}>
+  {label && <span class="section-label">{label}</span>}
+  <h2 class={`section-title ${titleClass}`} set:html={title} />
+  <div class={`divider ${align === 'center' ? 'divider--center' : ''}`}></div>
+  {description && <p class="section-desc" set:html={description} />}
+  <slot />
+</div>

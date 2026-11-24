@@ -1,0 +1,358 @@
+---
+import { FORMS, SITE, resolveFormUrl } from '../config/forms';
+
+// ============================================================================
+// DIRECT FORM ACTION URL / UUID FOR GENERAL ENQUIRY FORM
+// You can directly configure or change the endpoint right here:
+// ============================================================================
+const DIRECT_ENQUIRY_ACTION_URL = 'https://myformcapture.com/f/5ddb4177-17cc-4600-9af9-39be97a71ee5';
+// Or if you prefer bare UUID:
+// const DIRECT_ENQUIRY_ACTION_URL = '5ddb4177-17cc-4600-9af9-39be97a71ee5';
+
+export interface Props {
+  actionUrl?: string; // Full action URL or bare UUID (optional override)
+  uuid?: string;      // Or directly pass the UUID
+  formId?: string;
+}
+
+const {
+  actionUrl,
+  uuid,
+  formId = 'general-enquiry-form',
+} = Astro.props;
+
+// Resolution: Use prop override if passed, otherwise use direct URL from this file, or FORMS.GENERAL_ENQUIRY
+const resolvedActionUrl = resolveFormUrl(actionUrl || uuid || DIRECT_ENQUIRY_ACTION_URL || FORMS.GENERAL_ENQUIRY);
+---
+
+<div class="enquiry-form-wrapper" id={`${formId}-wrapper`}>
+  <!-- Success Message State (Controlled by client script) -->
+  <div class="mfc-success-box" id={`${formId}-success`} hidden>
+    <div class="mfc-success-icon" aria-hidden="true">
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+        <polyline points="22 4 12 14.01 9 11.01"></polyline>
+      </svg>
+    </div>
+    <h3 class="mfc-success-title">Thank you! Your enquiry has been received.</h3>
+    <p class="mfc-success-desc">
+      Our floral design team has received your details and will get back to you with ideas and next steps within one business day.
+    </p>
+    <button type="button" class="btn btn-outline btn-sm mfc-reset-btn" id={`${formId}-reset`}>
+      Send Another Enquiry
+    </button>
+  </div>
+
+  <!-- Error Message Banner -->
+  <div class="mfc-error-banner" id={`${formId}-error`} hidden role="alert">
+    <p class="mfc-error-text" id={`${formId}-error-text`}>Something went wrong. Please try again or reach out to us directly.</p>
+  </div>
+
+  <!-- Standard HTML Form -->
+  <form
+    id={formId}
+    action={resolvedActionUrl}
+    method="POST"
+    class="enquiry-form"
+    novalidate
+  >
+    {/* Rule 6: Honeypot spam input (_gotcha) */}
+    <input type="text" name="_gotcha" style="display:none;" tabindex="-1" autocomplete="off" />
+
+    <div class="form-grid">
+      <div class="form-row-2">
+        <div class="form-group">
+          <label for={`${formId}-name`} class="form-label">
+            Full Name <span class="required" aria-hidden="true">*</span>
+          </label>
+          <input
+            type="text"
+            id={`${formId}-name`}
+            name="name"
+            class="form-input"
+            placeholder="Your full name"
+            required
+            autocomplete="name"
+          />
+        </div>
+        <div class="form-group">
+          <label for={`${formId}-email`} class="form-label">
+            Email Address <span class="required" aria-hidden="true">*</span>
+          </label>
+          <input
+            type="email"
+            id={`${formId}-email`}
+            name="email"
+            class="form-input"
+            placeholder="your@email.com"
+            required
+            autocomplete="email"
+          />
+        </div>
+      </div>
+
+      <div class="form-row-2">
+        <div class="form-group">
+          <label for={`${formId}-phone`} class="form-label">
+            Phone Number <span class="required" aria-hidden="true">*</span>
+          </label>
+          <input
+            type="tel"
+            id={`${formId}-phone`}
+            name="phone"
+            class="form-input"
+            placeholder="+1 (555) 000-0000"
+            required
+            autocomplete="tel"
+          />
+        </div>
+        <div class="form-group">
+          <label for={`${formId}-type`} class="form-label">
+            Enquiry Type <span class="required" aria-hidden="true">*</span>
+          </label>
+          <select
+            id={`${formId}-type`}
+            name="enquiry_type"
+            class="form-select"
+            required
+          >
+            <option value="" disabled selected>Select an enquiry type</option>
+            <option value="Wedding Flowers">Wedding Flowers</option>
+            <option value="Birthday / Anniversary">Birthday / Anniversary</option>
+            <option value="Corporate Flowers">Corporate Flowers</option>
+            <option value="Events & Celebrations">Events &amp; Celebrations</option>
+            <option value="Sympathy / Funeral Flowers">Sympathy / Funeral Flowers</option>
+            <option value="Custom Bouquet">Custom Bouquet</option>
+            <option value="Seasonal Arrangements">Seasonal Arrangements</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-row-2">
+        <div class="form-group">
+          <label for={`${formId}-date`} class="form-label">Preferred Event Date</label>
+          <input
+            type="date"
+            id={`${formId}-date`}
+            name="event_date"
+            class="form-input"
+          />
+        </div>
+        <div class="form-group">
+          <label for={`${formId}-budget`} class="form-label">Estimated Budget</label>
+          <select id={`${formId}-budget`} name="budget" class="form-select">
+            <option value="" selected>Select a budget range</option>
+            <option value="Under $100">Under $100</option>
+            <option value="$100–$250">$100–$250</option>
+            <option value="$250–$500">$250–$500</option>
+            <option value="$500–$1,000">$500–$1,000</option>
+            <option value="$1,000+">$1,000+</option>
+            <option value="Not decided yet">Not decided yet</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for={`${formId}-message`} class="form-label">
+          Message / Requirements <span class="required" aria-hidden="true">*</span>
+        </label>
+        <textarea
+          id={`${formId}-message`}
+          name="message"
+          class="form-textarea"
+          placeholder="Tell us about your event, the flowers you're imagining, any special requests, or any other details that would help us understand what you need…"
+          required
+          rows="5"
+        ></textarea>
+      </div>
+
+      <div class="form-submit">
+        <button type="submit" class="btn btn-booking submit-button" id={`${formId}-submit`} style="width: 100%; justify-content: center; padding: 0.875rem 2rem;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
+          </svg>
+          <span class="btn-text">Send My Enquiry</span>
+        </button>
+      </div>
+    </div>
+  </form>
+
+  <div class="form-attribution">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--color-mfc-blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+    </svg>
+    <p>
+      {SITE.attribution.text.replace('MyFormConnect', '')}
+      <a
+        href={SITE.attribution.url}
+        target="_blank"
+        rel="noopener noreferrer"
+      >MyFormConnect</a>
+    </p>
+  </div>
+</div>
+
+<script is:inline define:vars={{ formId, actionUrl }}>
+  (function () {
+    const form = document.getElementById(formId);
+    if (!form) return;
+
+    const successBox = document.getElementById(formId + '-success');
+    const errorBanner = document.getElementById(formId + '-error');
+    const errorText = document.getElementById(formId + '-error-text');
+    const submitBtn = document.getElementById(formId + '-submit');
+    const resetBtn = document.getElementById(formId + '-reset');
+    const btnText = submitBtn?.querySelector('.btn-text');
+
+    // Reset button to send another message
+    resetBtn?.addEventListener('click', () => {
+      successBox.hidden = true;
+      form.hidden = false;
+      form.reset();
+    });
+
+    form.addEventListener('submit', async function (e) {
+      // RULE 5: ALWAYS CANCEL DEFAULT FORM SUBMIT
+      e.preventDefault();
+
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
+      // Clear previous error
+      if (errorBanner) errorBanner.hidden = true;
+
+      // Set loading state
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        if (btnText) btnText.textContent = 'Sending Enquiry…';
+      }
+
+      try {
+        // RULE 1: ALWAYS USE FormData. NEVER JSON.stringify().
+        // RULE 2: NEVER SET THE Content-Type HEADER MANUALLY (let browser set boundary).
+        // RULE 3: ALWAYS INCLUDE THE 2 AJAX HEADERS.
+        const response = await fetch(actionUrl, {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'X-Requested-With': 'XMLHttpRequest',
+          },
+          body: new FormData(form),
+        });
+
+        if (!response.ok) {
+          let errMsg = `Submission failed with status: ${response.status}`;
+          try {
+            const data = await response.json();
+            if (data.error || data.message) errMsg = data.error || data.message;
+          } catch {}
+          throw new Error(errMsg);
+        }
+
+        // Success state
+        form.hidden = true;
+        if (successBox) successBox.hidden = false;
+        form.reset();
+      } catch (err) {
+        if (errorBanner) {
+          errorBanner.hidden = false;
+          if (errorText) errorText.textContent = err.message || 'Something went wrong. Please try again.';
+        }
+      } finally {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          if (btnText) btnText.textContent = 'Send My Enquiry';
+        }
+      }
+    });
+  })();
+</script>
+
+<style>
+.enquiry-form-wrapper {
+  background: var(--color-white);
+  border-radius: var(--radius-lg);
+  padding: var(--space-8);
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--color-border);
+}
+
+.mfc-success-box {
+  padding: var(--space-8) var(--space-6);
+  text-align: center;
+  background: rgba(220, 252, 231, 0.5);
+  border: 1px solid rgba(22, 163, 74, 0.3);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-6);
+}
+
+.mfc-success-icon {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto var(--space-4);
+  color: #16a34a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mfc-success-title {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  color: #166534;
+  margin-bottom: var(--space-2);
+}
+
+.mfc-success-desc {
+  font-size: 0.95rem;
+  color: #166534;
+  line-height: 1.6;
+  max-width: 480px;
+  margin: 0 auto var(--space-6);
+}
+
+.mfc-reset-btn {
+  background: #fff;
+  border-color: #16a34a;
+  color: #166534;
+}
+
+.mfc-reset-btn:hover {
+  background: #16a34a;
+  color: #fff;
+}
+
+.mfc-error-banner {
+  padding: var(--space-4) var(--space-5);
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: var(--radius-sm);
+  color: #b91c1c;
+  font-size: 0.875rem;
+  margin-bottom: var(--space-5);
+}
+
+.form-grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.form-row-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-5);
+}
+
+@media (max-width: 600px) {
+  .enquiry-form-wrapper {
+    padding: var(--space-6) var(--space-5);
+  }
+  .form-row-2 {
+    grid-template-columns: 1fr;
+  }
+}
+</style>

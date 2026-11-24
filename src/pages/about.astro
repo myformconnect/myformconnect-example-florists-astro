@@ -1,0 +1,505 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import { SITE } from '../config/forms';
+
+const pageTitle = 'About Us';
+const description = 'Discover the story behind Bloom & Beyond Studio — a passionate floral design studio dedicated to creating meaningful, beautiful arrangements for life\'s most memorable moments.';
+---
+
+<MainLayout title={pageTitle} description={description}>
+  <Header />
+
+  <main id="main-content">
+
+    <!-- ── PAGE HERO ──────────────────────────────────── -->
+    <section class="page-hero about-hero">
+      <div class="about-hero-bg">
+        <img
+          src="https://images.unsplash.com/photo-1508610048659-a06b669e3321?w=1600&q=80&auto=format"
+          alt="Boutique floral design studio interior with buckets of fresh botanical blooms"
+          loading="eager"
+          fetchpriority="high"
+          decoding="async"
+          width="1600"
+          height="700"
+          class="about-hero-img"
+        />
+        <div class="about-hero-overlay"></div>
+      </div>
+      <div class="container about-hero-content">
+        <span class="section-label" style="color: var(--color-pink);">Our Story</span>
+        <h1 class="about-hero-title">
+          A little passion.<br />A lot of flowers.
+        </h1>
+        <p class="about-hero-desc">
+          Where creativity blooms and every arrangement tells a story.
+        </p>
+      </div>
+    </section>
+
+    <!-- ── OUR STORY ──────────────────────────────────── -->
+    <section class="section">
+      <div class="container">
+        <div class="story-grid">
+          <div class="story-text">
+            <SectionHeading
+              label="The Beginning"
+              title="From a love of flowers to a floral design studio"
+            />
+            <div class="story-body">
+              <p>
+                Bloom &amp; Beyond Studio was born from a lifelong passion for the natural world and a belief that flowers have the extraordinary power to express what words sometimes cannot. What began as a small weekend project — arranging flowers for friends and family — grew into a full creative practice dedicated to bringing beauty into people's most significant moments.
+              </p>
+              <p>
+                We believe that every flower arrangement should feel considered, personal, and alive. We work with the seasons, drawing on the natural beauty of each time of year to create arrangements that feel authentic and deeply connected to the moment they're designed for.
+              </p>
+              <p>
+                Over the years, we've had the privilege of designing flowers for hundreds of weddings, celebrations, corporate events, and personal occasions — each one unique, each one cherished.
+              </p>
+            </div>
+          </div>
+          <div class="story-visual">
+            <div class="story-img-frame">
+              <img
+                src="https://images.unsplash.com/photo-1562690868-60bbe7293e94?w=700&q=80&auto=format"
+                alt="Beautiful floral studio workspace with seasonal blooms and arrangement tools"
+                loading="lazy"
+                decoding="async"
+                width="560"
+                height="700"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── PHILOSOPHY ──────────────────────────────────── -->
+    <section class="section bg-alt philosophy-section">
+      <div class="container">
+        <SectionHeading
+          label="What We Believe"
+          title="Our Philosophy"
+          description="Good floral design isn't just about beautiful flowers — it's about creating an emotional experience that lingers."
+          align="center"
+        />
+        <div class="philosophy-grid">
+          {[
+            {
+              title: 'Thoughtful Design',
+              desc: 'We approach every arrangement as a creative conversation. We listen carefully to your ideas, your vision, and your story — then design something that reflects all of it.',
+              icon: 'design',
+            },
+            {
+              title: 'Seasonal Flowers',
+              desc: 'We believe in working with nature, not against it. By using seasonal and locally sourced blooms wherever possible, our arrangements always feel fresh and alive.',
+              icon: 'leaf',
+            },
+            {
+              title: 'Personal Attention',
+              desc: 'Every client, every occasion, every arrangement receives our complete focus. No two projects are the same, and we wouldn\'t have it any other way.',
+              icon: 'heart',
+            },
+            {
+              title: 'Beautiful Details',
+              desc: 'It\'s the smallest details — the texture of a leaf, the angle of a stem, the choice of ribbon — that elevate a beautiful arrangement into something truly memorable.',
+              icon: 'star',
+            },
+          ].map(p => (
+            <div class="philosophy-card">
+              <div class="philosophy-icon">
+                {p.icon === 'design' && (
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--color-green)" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+                )}
+                {p.icon === 'leaf' && (
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--color-green)" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M17 8C8 10 5.9 16.17 3.82 19.96M9.5 2c0 4.42 2.59 8 10.5 8"/></svg>
+                )}
+                {p.icon === 'heart' && (
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--color-green)" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                )}
+                {p.icon === 'star' && (
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--color-green)" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                )}
+              </div>
+              <h3 class="philosophy-title">{p.title}</h3>
+              <p class="philosophy-desc text-small">{p.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ── STUDIO GALLERY ──────────────────────────────── -->
+    <section class="section studio-gallery-section">
+      <div class="container">
+        <SectionHeading
+          label="Our Studio"
+          title="Where flowers come to life"
+          description="A glimpse inside our creative workspace — where every arrangement begins with fresh blooms and genuine passion."
+          align="center"
+        />
+        <div class="studio-gallery">
+          <div class="studio-img studio-img--tall">
+            <img
+              src="https://images.unsplash.com/photo-1550159930-40066082a4fc?w=600&q=80&auto=format"
+              alt="Florist arranging a colourful bouquet at the studio workbench"
+              loading="lazy"
+              decoding="async"
+              width="500"
+              height="650"
+            />
+          </div>
+          <div class="studio-col-right">
+            <div class="studio-img">
+              <img
+                src="https://images.unsplash.com/photo-1471086569966-db3eebc25a59?w=600&q=80&auto=format"
+                alt="Close-up of colourful fresh garden flowers ready for arrangement"
+                loading="lazy"
+                decoding="async"
+                width="500"
+                height="380"
+              />
+            </div>
+            <div class="studio-img">
+              <img
+                src="https://images.unsplash.com/photo-1498579687545-d5a4fffb0a9e?w=600&q=80&auto=format"
+                alt="Florist studio with seasonal flowers displayed in a natural light setting"
+                loading="lazy"
+                decoding="async"
+                width="500"
+                height="250"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── OUR APPROACH ───────────────────────────────── -->
+    <section class="section bg-alt approach-section">
+      <div class="container">
+        <div class="approach-grid">
+          <div class="approach-text">
+            <SectionHeading
+              label="Working With Us"
+              title="Your vision, our expertise"
+            />
+            <p class="text-body" style="color: var(--color-secondary); margin-bottom: var(--space-5);">
+              We know that organising flowers for a wedding or special event can feel overwhelming — there are so many choices, so many details. That's why we work alongside you at every step, taking the complexity off your plate and replacing it with clarity, creativity, and confidence.
+            </p>
+            <p class="text-body" style="color: var(--color-secondary); margin-bottom: var(--space-8);">
+              Our consultation process starts with a conversation. We want to understand what your occasion means to you, what feelings you want your flowers to evoke, and what details matter most. From there, we develop a floral proposal tailored specifically to your vision and your budget.
+            </p>
+            <div class="approach-steps">
+              {[
+                { step: '1', label: 'Submit an Enquiry', desc: 'Tell us about your occasion and what you\'re imagining.' },
+                { step: '2', label: 'Book a Consultation', desc: 'We\'ll discuss your ideas, style, and requirements in detail.' },
+                { step: '3', label: 'Receive Your Proposal', desc: 'We\'ll create a personalized design and cost proposal for you.' },
+                { step: '4', label: 'Enjoy Your Flowers', desc: 'We handle everything — creation, preparation, and delivery.' },
+              ].map(s => (
+                <div class="approach-step">
+                  <div class="approach-step-num">{s.step}</div>
+                  <div class="approach-step-text">
+                    <strong>{s.label}</strong>
+                    <span class="text-small" style="color: var(--color-secondary);">{s.desc}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div class="approach-visual">
+            <img
+              src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=700&q=80&auto=format"
+              alt="Florist consulting with a bride about wedding flower arrangements"
+              loading="lazy"
+              decoding="async"
+              width="560"
+              height="700"
+              class="approach-img"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── CTA ───────────────────────────────────────── -->
+    <section class="section cta-banner-section">
+      <div class="container">
+        <div class="cta-banner">
+          <div class="cta-banner-text">
+            <h2 class="cta-banner-title">Let's create something beautiful together.</h2>
+            <p class="cta-banner-desc">We'd love to hear about your occasion and start designing your perfect floral arrangement.</p>
+          </div>
+          <div class="cta-banner-actions">
+            <a href="/contact#booking" class="btn btn-booking">Book a Consultation</a>
+            <a href="/contact" class="btn btn-outline-white">Send an Enquiry</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <Footer />
+</MainLayout>
+
+<style>
+/* ── About Hero ──────────────────────────────── */
+.about-hero {
+  position: relative;
+  min-height: 60vh;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+}
+
+.about-hero-bg {
+  position: absolute;
+  inset: 0;
+}
+
+.about-hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.about-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(37,41,35,0.75) 0%, rgba(37,41,35,0.2) 60%, transparent 100%);
+}
+
+.about-hero-content {
+  position: relative;
+  z-index: 1;
+  padding-bottom: var(--space-16);
+  padding-top: var(--space-20);
+}
+
+.about-hero-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 400;
+  color: var(--color-white);
+  line-height: 1.1;
+  margin-bottom: var(--space-4);
+  margin-top: var(--space-4);
+}
+
+.about-hero-desc {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.15rem;
+  color: rgba(255,255,255,0.75);
+}
+
+/* ── Story ───────────────────────────────────── */
+.story-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-16);
+  align-items: start;
+}
+
+.story-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.story-body p {
+  color: var(--color-secondary);
+  line-height: 1.75;
+}
+
+.story-img-frame {
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  position: relative;
+}
+
+.story-img-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ── Philosophy ──────────────────────────────── */
+.philosophy-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-6);
+}
+
+.philosophy-card {
+  padding: var(--space-6);
+  background: var(--color-white);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+}
+
+.philosophy-icon {
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(104,118,90,0.1);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-4);
+}
+
+.philosophy-title {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-weight: 500;
+  color: var(--color-dark);
+  margin-bottom: var(--space-3);
+}
+
+.philosophy-desc {
+  color: var(--color-secondary);
+  line-height: 1.65;
+}
+
+/* ── Studio Gallery ──────────────────────────── */
+.studio-gallery {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-5);
+  align-items: stretch;
+}
+
+.studio-img {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.studio-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+
+.studio-img:hover img {
+  transform: scale(1.03);
+}
+
+.studio-img--tall img {
+  min-height: 500px;
+}
+
+.studio-col-right {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+/* ── Approach ────────────────────────────────── */
+.approach-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-16);
+  align-items: center;
+}
+
+.approach-steps {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.approach-step {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-4);
+  padding: var(--space-4);
+  background: var(--color-white);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+}
+
+.approach-step-num {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-green);
+  color: var(--color-white);
+  border-radius: 50%;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.approach-step-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.approach-img {
+  width: 100%;
+  border-radius: var(--radius-xl);
+  object-fit: cover;
+  aspect-ratio: 4/5;
+}
+
+/* ── CTA Banner ──────────────────────────────── */
+.cta-banner-section {
+  background-color: var(--color-green);
+}
+
+.cta-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-10);
+  flex-wrap: wrap;
+}
+
+.cta-banner-title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  font-weight: 400;
+  color: var(--color-white);
+  margin-bottom: var(--space-3);
+}
+
+.cta-banner-desc {
+  color: rgba(255,255,255,0.8);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.cta-banner-actions {
+  display: flex;
+  gap: var(--space-4);
+  flex-shrink: 0;
+  flex-wrap: wrap;
+}
+
+/* ── Responsive ──────────────────────────────── */
+@media (max-width: 1024px) {
+  .philosophy-grid { grid-template-columns: repeat(2, 1fr); }
+  .story-grid { grid-template-columns: 1fr; }
+  .approach-grid { grid-template-columns: 1fr; }
+  .approach-visual { order: -1; }
+}
+
+@media (max-width: 768px) {
+  .studio-gallery { grid-template-columns: 1fr; }
+  .studio-img--tall img { min-height: 300px; }
+  .cta-banner { flex-direction: column; align-items: flex-start; }
+}
+
+@media (max-width: 600px) {
+  .philosophy-grid { grid-template-columns: 1fr; }
+}
+</style>
