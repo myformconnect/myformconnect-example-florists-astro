@@ -1,0 +1,293 @@
+---
+import SectionHeading from './SectionHeading.astro';
+
+export interface Review {
+  name: string;
+  role: string;
+  rating: number;
+  quote: string;
+  occasion: string;
+}
+
+const reviews: Review[] = [
+  {
+    name: 'Elena & Marcus Vance',
+    role: 'Bride & Groom',
+    occasion: 'Countryside Estate Wedding',
+    rating: 5,
+    quote:
+      'Bloom & Beyond brought our wedding vision to life beyond what we could have dreamed. From our first consultation to the ceremony arch and dinner tables, every single flower felt intentional, lush, and breathtaking. Our guests still talk about the flowers months later.',
+  },
+  {
+    name: 'Sophia Chen',
+    role: 'Creative Director',
+    occasion: 'The Harper Atelier & Lounge',
+    rating: 5,
+    quote:
+      'We partner with Bloom & Beyond for our gallery installations and private brand events. Their understanding of architectural space, botanical textures, and seasonal palettes is unmatched. Prompt, reliable, and extraordinarily talented.',
+  },
+  {
+    name: 'Julian & Claire Bennett',
+    role: 'Private Client',
+    occasion: '10th Anniversary Dinner',
+    rating: 5,
+    quote:
+      'I requested a bespoke arrangement featuring garden roses and eucalyptus for our anniversary dinner. The team took the time to discuss the exact feeling we wanted, and what arrived was pure poetry. It felt deeply personal and memorable.',
+  },
+];
+
+const stats = [
+  { value: '4.9/5', label: 'Client Satisfaction Rating' },
+  { value: '500+', label: 'Weddings & Celebrations Styled' },
+  { value: '100%', label: 'Fresh, Seasonally Selected Stems' },
+  { value: '1-Day', label: 'Consultation Response Guarantee' },
+];
+---
+
+<section class="section reviews-section" aria-label="Client reviews and testimonials">
+  <div class="container">
+    <SectionHeading
+      label="Client Stories"
+      title="Celebrated in every petal."
+      description="From intimate milestone bouquets to grand venue installations, hear from the people who trusted us with their special moments."
+      align="center"
+    />
+
+    <!-- Trust Stats Bar -->
+    <div class="trust-stats-bar">
+      {stats.map(s => (
+        <div class="trust-stat">
+          <span class="trust-stat-val">{s.value}</span>
+          <span class="trust-stat-label">{s.label}</span>
+        </div>
+      ))}
+    </div>
+
+    <!-- Reviews Grid -->
+    <div class="reviews-grid">
+      {reviews.map(r => (
+        <article class="review-card">
+          <div class="review-card-header">
+            <!-- 5 Star Rating -->
+            <div class="review-stars" aria-label={`${r.rating} out of 5 stars`}>
+              {Array.from({ length: r.rating }).map(() => (
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="#C59B27" stroke="#C59B27" stroke-width="1" aria-hidden="true">
+                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                </svg>
+              ))}
+            </div>
+            <span class="review-occasion text-xs">{r.occasion}</span>
+          </div>
+
+          <blockquote class="review-quote">
+            <p>"{r.quote}"</p>
+          </blockquote>
+
+          <footer class="review-author">
+            <div class="author-avatar" aria-hidden="true">
+              {r.name.charAt(0)}
+            </div>
+            <div>
+              <cite class="author-name">{r.name}</cite>
+              <span class="author-role text-xs">{r.role}</span>
+            </div>
+          </footer>
+        </article>
+      ))}
+    </div>
+
+    <!-- Google / Social Proof Badge -->
+    <div class="reviews-badge">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--color-green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        <polyline points="9 12 11 14 15 10"/>
+      </svg>
+      <span class="text-small">
+        Rated <strong>4.9 / 5</strong> across 280+ couples and celebration clients.
+      </span>
+    </div>
+  </div>
+</section>
+
+<style>
+.reviews-section {
+  background-color: var(--color-bg);
+  position: relative;
+  overflow: hidden;
+}
+
+/* ── Trust Stats ────────────────────────────── */
+.trust-stats-bar {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-4);
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6) var(--space-8);
+  margin-bottom: var(--space-12);
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+}
+
+.trust-stat {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.trust-stat:not(:last-child) {
+  border-right: 1px solid var(--color-border);
+}
+
+.trust-stat-val {
+  font-family: var(--font-serif);
+  font-size: 1.85rem;
+  font-weight: 500;
+  color: var(--color-green);
+  line-height: 1.1;
+}
+
+.trust-stat-label {
+  font-size: 0.8rem;
+  color: var(--color-secondary);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+/* ── Reviews Grid ───────────────────────────── */
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-8);
+}
+
+.review-card {
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-8);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+  position: relative;
+}
+
+.review-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.review-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-5);
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.review-stars {
+  display: flex;
+  gap: 2px;
+}
+
+.review-occasion {
+  color: var(--color-secondary);
+  font-style: italic;
+  background: rgba(104, 118, 90, 0.08);
+  padding: 3px 8px;
+  border-radius: 100px;
+}
+
+.review-quote {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--color-dark);
+  font-style: italic;
+  margin: 0 0 var(--space-6) 0;
+  flex-grow: 1;
+}
+
+.review-author {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--color-border);
+}
+
+.author-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(233, 200, 197, 0.35);
+  color: var(--color-green-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 1.05rem;
+  flex-shrink: 0;
+}
+
+.author-name {
+  display: block;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--color-dark);
+  line-height: 1.2;
+}
+
+.author-role {
+  display: block;
+  color: var(--color-secondary);
+  margin-top: 2px;
+}
+
+/* ── Bottom Proof Badge ─────────────────────── */
+.reviews-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  margin-top: var(--space-10);
+  color: var(--color-secondary);
+  text-align: center;
+}
+
+.reviews-badge strong {
+  color: var(--color-dark);
+}
+
+/* ── Responsive ─────────────────────────────── */
+@media (max-width: 992px) {
+  .trust-stats-bar {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-6);
+  }
+  .trust-stat:nth-child(2) {
+    border-right: none;
+  }
+  .reviews-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+}
+
+@media (max-width: 600px) {
+  .trust-stats-bar {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .trust-stat:not(:last-child) {
+    border-right: none;
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: var(--space-4);
+  }
+}
+</style>

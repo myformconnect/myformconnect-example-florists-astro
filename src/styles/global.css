@@ -15,8 +15,12 @@
   --color-pink:        #E9C8C5;
   --color-pink-light:  #f5e5e3;
   --color-white:       #FFFFFF;
-  --color-mfc-blue:    #2563EB;
-  --color-mfc-blue-bg: #EFF6FF;
+  --color-booking:     #8F4C44;
+  --color-booking-hover: #783C35;
+  --color-booking-bg:  #FAF2F0;
+  --color-booking-border: rgba(143, 76, 68, 0.22);
+  --color-mfc-blue:    var(--color-booking);
+  --color-mfc-blue-bg: var(--color-booking-bg);
   --color-border:      #E2DDD5;
 
   /* Typography */
@@ -267,15 +271,15 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .btn-booking {
-  background-color: var(--color-mfc-blue);
+  background-color: var(--color-booking);
   color: var(--color-white);
-  border-color: var(--color-mfc-blue);
+  border-color: var(--color-booking);
 }
 .btn-booking:hover {
-  background-color: #1d4ed8;
-  border-color: #1d4ed8;
+  background-color: var(--color-booking-hover);
+  border-color: var(--color-booking-hover);
   transform: translateY(-1px);
-  box-shadow: 0 4px 14px rgba(37,99,235,0.3);
+  box-shadow: 0 4px 14px rgba(143, 76, 68, 0.25);
 }
 
 /* ── 7. Form Styles ───────────────────────────────────────── */
@@ -316,8 +320,8 @@ h1, h2, h3, h4, h5, h6 {
 .form-select:focus,
 .form-textarea:focus {
   outline: none;
-  border-color: var(--color-mfc-blue);
-  box-shadow: 0 0 0 3px rgba(37,99,235,0.12);
+  border-color: var(--color-green);
+  box-shadow: 0 0 0 3px rgba(104, 118, 90, 0.18);
 }
 
 .form-input::placeholder,
@@ -370,14 +374,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .form-attribution a {
-  color: var(--color-mfc-blue);
+  color: var(--color-booking);
   font-weight: 500;
   text-decoration: none;
   transition: color var(--transition-fast);
 }
 
 .form-attribution a:hover {
-  color: #1d4ed8;
+  color: var(--color-booking-hover);
   text-decoration: underline;
 }
 
@@ -486,7 +490,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* ── 15. Focus Styles ─────────────────────────────────────── */
 :focus-visible {
-  outline: 2px solid var(--color-mfc-blue);
+  outline: 2px solid var(--color-green);
   outline-offset: 3px;
   border-radius: var(--radius-sm);
 }

@@ -258,6 +258,32 @@ const slotsUrl = `${submitUrl}/slots`;
   font-size: 0.7rem !important;
 }
 
+:global(#mfc-booking-widget) {
+  --mfc-booking-accent: var(--color-booking) !important;
+  --mfc-booking-accent-hover: var(--color-booking-hover) !important;
+  --mfc-booking-accent-tint: var(--color-booking-bg) !important;
+}
+
+:global(#mfc-booking-widget .mfc-booking-btn-primary),
+:global(#mfc-booking-widget [data-booking-continue-date]:not(:disabled)),
+:global(#mfc-booking-widget [data-booking-continue-time]:not(:disabled)),
+:global(#mfc-booking-widget [data-booking-submit]:not(:disabled)) {
+  background-color: var(--color-booking) !important;
+  border-color: var(--color-booking) !important;
+  color: #ffffff !important;
+}
+
+:global(#mfc-booking-widget .mfc-booking-slot-selected) {
+  background-color: var(--color-booking) !important;
+  border-color: var(--color-booking) !important;
+  color: #ffffff !important;
+}
+
+:global(#mfc-booking-widget .mfc-booking-calendar-day.mfc-booking-day-selected) {
+  background-color: var(--color-booking) !important;
+  color: #ffffff !important;
+}
+
 .mfc-widget-placeholder {
   display: flex;
   flex-direction: column;
@@ -271,8 +297,8 @@ const slotsUrl = `${submitUrl}/slots`;
 .mfc-placeholder-spinner {
   width: 28px;
   height: 28px;
-  border: 2.5px solid rgba(37, 99, 235, 0.15);
-  border-top-color: var(--color-mfc-blue);
+  border: 2.5px solid rgba(143, 76, 68, 0.2);
+  border-top-color: var(--color-booking);
   border-radius: 50%;
   animation: mfc-spin 0.8s linear infinite;
 }

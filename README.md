@@ -64,6 +64,7 @@ Override endpoints directly where the component is rendered:
 │   │   ├── BookingWidget.astro
 │   │   ├── EnquiryForm.astro
 │   │   ├── FloralGallery.astro
+│   │   ├── ReviewsSection.astro
 │   │   ├── Header.astro
 │   │   └── Footer.astro
 │   ├── config/
