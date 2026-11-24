@@ -1,160 +1,81 @@
-# Bloom & Beyond Studio – MyFormConnect Demo Website
+# Bloom & Beyond Studio
 
-A demonstration website built with **Astro**, **TypeScript**, and **Vanilla CSS** showcasing how an independent luxury floral design studio integrates **MyFormConnect** / **MyFormCapture** to capture high-value customer enquiries and wedding consultations without missing leads.
+A premium florist studio website built with **Astro (SSG)**, **TypeScript**, and **Vanilla CSS**. Features integrated customer enquiry forms and an interactive consultation booking calendar powered by **MyFormConnect** / **MyFormCapture**.
 
 ---
 
-## 🌸 Form Integration Architecture (per `MYFORMCONNECT_LLM_GUIDE.txt`)
+## 🚀 Quick Start
 
-This project strictly follows the **MyFormConnect (MFC) LLM System Prompt & Code Generation Specification (v2.0)**:
+```bash
+# 1. Install dependencies
+npm install
 
-### 1. Interactive Scheduling Booking Widget (`src/components/BookingWidget.astro`)
-The booking widget uses the exact container structure and hosted asset integration pattern specified in Section [3] of the guide:
+# 2. Run local dev server (http://localhost:4321)
+npm run dev
 
-```html
-<link rel="stylesheet" href="/booking-widget.css" />
-
-<div
-  id="mfc-booking-widget"
-  data-booking-widget=""
-  data-form-uuid="95cb0e2f-9a02-4b30-ab68-5aeb9e1220a7"
-  data-api-base="https://myformcapture.com"
-  data-submit-url="https://myformcapture.com/f/95cb0e2f-9a02-4b30-ab68-5aeb9e1220a7"
-  data-slots-url="https://myformcapture.com/f/95cb0e2f-9a02-4b30-ab68-5aeb9e1220a7/slots"
-  data-meeting-title="Wedding & Event Floral Consultation"
-  data-meeting-description="30-minute consultation with our floral design team"
-  data-meeting-duration="30"
-  data-branding-name="MyFormConnect"
-  data-branding-url="https://myformcapture.com"
->
-  ...
-</div>
-
-<script src="/booking-widget.js" defer></script>
+# 3. Build for production (output in ./dist)
+npm run build
 ```
 
-- **Dedicated Action URL**: `https://myformcapture.com/f/95cb0e2f-9a02-4b30-ab68-5aeb9e1220a7`
-- **Dedicated Slots URL**: `https://myformcapture.com/f/95cb0e2f-9a02-4b30-ab68-5aeb9e1220a7/slots`
-- **Hosted Assets**: Downloaded into `public/booking-widget.css` and `public/booking-widget.js` for local asset serving and offline resilience.
-- **Dynamic Route & Mount Support**: Triggers `DOMContentLoaded` and `turbo:render` events upon hydration.
-- **Graceful Fallback**: Includes a `<noscript>` consultation form that submits directly to the booking endpoint.
-
 ---
 
-### 2. General Enquiry Forms (`src/components/EnquiryForm.astro`)
-All non-booking forms (Home & Contact pages) use a **distinct form action URL** and strictly follow the **6 Golden Rules**:
+## 📝 Form Action Configuration
 
-- **Distinct Action URL**: `https://myformcapture.com/f/5ddb4177-17cc-4600-9af9-39be97a71ee5`
-- **Rule 1 (FormData)**: Serialized via `new FormData(form)` — never `JSON.stringify()`.
-- **Rule 2 (No Manual Content-Type)**: `Content-Type` is explicitly omitted from headers to let the browser compute the multipart boundary.
-- **Rule 3 (AJAX Headers)**: Includes `'Accept': 'application/json'` and `'X-Requested-With': 'XMLHttpRequest'`.
-- **Rule 4 (Name Attributes)**: Every form element (`name`, `email`, `phone`, `enquiry_type`, `event_date`, `budget`, `message`) has a descriptive `name` attribute.
-- **Rule 5 (Prevent Default)**: Submissions call `e.preventDefault()` with interactive loading, success, and error states.
-- **Rule 6 (Honeypot Spam Field)**: Includes `<input type="text" name="_gotcha" style="display:none;" tabindex="-1" autocomplete="off" />`.
+You can update form endpoints easily by pasting either your **full action URL** or just the **form UUID**.
 
----
+### Option 1: In `src/config/forms.ts` (Recommended)
+Edit endpoints in one central place:
 
-## 🔗 Quick Form Setup & Direct Form Actions
-
-You can configure or change form endpoints in **three straightforward ways** (full URL or bare UUID):
-
-### Option 1: Directly inside the component file
-Each form component defines its direct action URL right at the top of its file:
-- **Booking Widget** ([src/components/BookingWidget.astro](file:///d:/Work2/myformconnect-example-florists-astro/src/components/BookingWidget.astro#L7)):
-  ```typescript
-  const DIRECT_BOOKING_ACTION_URL = 'https://myformcapture.com/f/95cb0e2f-9a02-4b30-ab68-5aeb9e1220a7';
-  // Or just: '95cb0e2f-9a02-4b30-ab68-5aeb9e1220a7'
-  ```
-- **General Enquiry Form** ([src/components/EnquiryForm.astro](file:///d:/Work2/myformconnect-example-florists-astro/src/components/EnquiryForm.astro#L7)):
-  ```typescript
-  const DIRECT_ENQUIRY_ACTION_URL = 'https://myformcapture.com/f/5ddb4177-17cc-4600-9af9-39be97a71ee5';
-  // Or just: '5ddb4177-17cc-4600-9af9-39be97a71ee5'
-  ```
-
-### Option 2: Directly on the component tag in page files
-You can pass the direct URL or UUID as a prop wherever the component is rendered:
-- **Home page (`src/pages/index.astro`)**:
-  ```astro
-  <EnquiryForm formId="home-enquiry-form" actionUrl="https://myformcapture.com/f/5ddb4177-17cc-4600-9af9-39be97a71ee5" />
-  ```
-- **Contact page (`src/pages/contact.astro`)**:
-  ```astro
-  <EnquiryForm formId="contact-enquiry-form" actionUrl="https://myformcapture.com/f/5ddb4177-17cc-4600-9af9-39be97a71ee5" />
-  <BookingWidget actionUrl="https://myformcapture.com/f/95cb0e2f-9a02-4b30-ab68-5aeb9e1220a7" />
-  ```
-
-### Option 3: In the central config file (`src/config/forms.ts`)
 ```typescript
 export const FORMS = {
+  // General Enquiry Form (Home & Contact pages)
   GENERAL_ENQUIRY: 'https://myformcapture.com/f/5ddb4177-17cc-4600-9af9-39be97a71ee5',
+
+  // Consultation Booking Widget (/contact#booking)
   BOOKING_WIDGET: 'https://myformcapture.com/f/95cb0e2f-9a02-4b30-ab68-5aeb9e1220a7',
 } as const;
 ```
+*(You can also paste just the bare UUID like `'95cb0e2f-9a02-4b30-ab68-5aeb9e1220a7'`)*
 
----
+### Option 2: Directly in Component Files
+Each form component also defines its direct action URL at the top of the file:
+- **`src/components/EnquiryForm.astro`**: `DIRECT_ENQUIRY_ACTION_URL`
+- **`src/components/BookingWidget.astro`**: `DIRECT_BOOKING_ACTION_URL`
 
-## 🔗 Form Actions Summary
+### Option 3: Via Component Props
+Override endpoints directly where the component is rendered:
 
-| Component | Form Action URL | UUID | Guide Format |
-|-----------|-----------------|------|--------------|
-| **Booking Widget** (`#booking`) | `https://myformcapture.com/f/95cb0e2f-9a02-4b30-ab68-5aeb9e1220a7` | `95cb0e2f-9a02-4b30-ab68-5aeb9e1220a7` | `#mfc-booking-widget` container with `data-*` attributes |
-| **General Enquiry Form** | `https://myformcapture.com/f/5ddb4177-17cc-4600-9af9-39be97a71ee5` | `5ddb4177-17cc-4600-9af9-39be97a71ee5` | 6 Golden Rules (`FormData`, AJAX headers, honeypot) |
+```astro
+<EnquiryForm actionUrl="https://myformcapture.com/f/YOUR-UUID" />
+<BookingWidget actionUrl="https://myformcapture.com/f/YOUR-UUID" />
+```
 
 ---
 
 ## 📁 Project Structure
 
 ```text
-myformconnect-example-florists-astro/
 ├── public/
-│   ├── booking-widget.css      # Local copy of MFC booking widget styles
-│   ├── booking-widget.js       # Local runtime script for MFC booking widget
-│   ├── favicon.svg
-│   ├── robots.txt
-│   └── sitemap.xml
+│   ├── images/               # Service & gallery images
+│   ├── booking-widget.css    # Booking calendar styles
+│   └── booking-widget.js     # Booking calendar script
 ├── src/
-│   ├── components/
-│   │   ├── Header.astro        # Sticky header with mobile navigation & booking CTA
-│   │   ├── Footer.astro        # Brand info, service links, fictional demo details
-│   │   ├── EnquiryForm.astro   # Standard enquiry form adhering to 6 Golden Rules
-│   │   ├── BookingWidget.astro # Interactive scheduling widget per MFC LLM Guide spec
-│   │   ├── SectionHeading.astro# Editorial section title component
-│   │   ├── ServiceCard.astro   # Service card with feature list & action link
-│   │   └── FloralGallery.astro # Responsive visual mosaic gallery
+│   ├── components/           # Reusable UI & form components
+│   │   ├── BookingWidget.astro
+│   │   ├── EnquiryForm.astro
+│   │   ├── FloralGallery.astro
+│   │   ├── Header.astro
+│   │   └── Footer.astro
 │   ├── config/
-│   │   └── forms.ts            # Centralized MyFormCapture URLs & studio demo metadata
+│   │   └── forms.ts          # Form endpoints & site info
 │   ├── layouts/
-│   │   └── MainLayout.astro    # HTML shell, fonts, SEO tags, LocalBusiness schema
+│   │   └── MainLayout.astro  # HTML shell, fonts, SEO metadata
 │   ├── pages/
-│   │   ├── index.astro         # Home (Hero, Intro, 6 Services, Weddings, Gallery, Process, Form)
-│   │   ├── about.astro         # About Us (Story, Philosophy, Studio workspace, Approach)
-│   │   ├── services.astro      # Detailed 6 floral design services & differentiators
-│   │   └── contact.astro       # Contact & Consultation booking (#booking)
+│   │   ├── index.astro       # Home page
+│   │   ├── about.astro       # About studio page
+│   │   ├── services.astro    # Services page
+│   │   └── contact.astro     # Contact & booking page
 │   └── styles/
-│       └── global.css          # Typography, custom properties, form styling & responsive rules
-├── MYFORMCONNECT_LLM_GUIDE.txt # Official integration specification guide
-├── astro.config.mjs
-├── package.json
-└── tsconfig.json
+│       └── global.css        # Design tokens & global CSS
+└── astro.config.mjs
 ```
-
----
-
-## 🚀 Getting Started
-
-### 1. Install Dependencies
-```bash
-npm install
-```
-
-### 2. Run the Development Server
-```bash
-npm run dev
-```
-Open [http://localhost:4321](http://localhost:4321) in your browser.
-
-### 3. Build for Production (SSG)
-```bash
-npm run build
-```
-Production static output is generated in `./dist`.
